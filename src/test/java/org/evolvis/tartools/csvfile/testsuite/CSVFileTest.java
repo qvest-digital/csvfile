@@ -31,7 +31,7 @@ public class CSVFileTest {
         assertEquals(fw.getFieldSeparator(), fr.getFieldSeparator());
         assertEquals(fw.getTextQualifier(), fr.getTextQualifier());
         // ensure test file contents match expectation
-        List f = fr.readFields();   // #1 headline
+        List<String> f = fr.readFields();   // #1 headline
         assertNotNull(f);
         assertEquals(3, f.size());
         assertEquals("a", f.get(0));
@@ -95,7 +95,7 @@ public class CSVFileTest {
         fc = fc.replace("\"\"", "\01").replace("\"", "").replace('\01', '"');
         // trailing commas are ignored
         fc = fc.replaceAll("(?m),$", "");
-        System.err.println(String.format("have<%s>\nneed<%s>\n", sw.toString(), fc));
+        // ensure the result matches
         assertEquals(fc, sw.toString());
     }
 }

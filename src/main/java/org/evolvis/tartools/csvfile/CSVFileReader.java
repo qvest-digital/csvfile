@@ -260,10 +260,10 @@ public class CSVFileReader extends CSVFile {
      * It can read a subsequent line from the input stream if necessary
      * due to a newline inside a quoted field.
      *
-     * @return List of strings containing each field from the next line of the file
+     * @return List of String containing each field from the next line of the file
      * @throws IOException if an error occurs while reading the new line from the file
      */
-    public List readFields() throws IOException {
+    public List<String> readFields() throws IOException {
         return readFields(in.readLine());
     }
 
