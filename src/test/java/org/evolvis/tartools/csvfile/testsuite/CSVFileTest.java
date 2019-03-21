@@ -287,6 +287,24 @@ public class CSVFileTest {
     }
 
     @Test
+    public void testPosCSVFromList() throws IOException {
+        final StringWriter sw = new StringWriter();
+        final CSVFileWriter w = new CSVFileWriter(sw, ';', '"');
+        final List<String> l = new ArrayList<>();
+        l.add(null);
+        l.add("a;b");
+        l.add("c" + (char) 0x0A + "d");
+        l.add("e" + (char) 0x0D + "f");
+        l.add("\"g");
+        w.writeFields(l);
+        l.clear();
+        l.add("g\"h"); // mishandled except by CSVFileProperWriter
+        w.writeFields(l);
+        w.close();
+        cmps(CMPF(80), sw.toString());
+    }
+
+    @Test
     public void testPosSSVFromList() throws IOException {
         final StringWriter sw = new StringWriter();
         final SSVFileWriter w = new SSVFileWriter(sw);
