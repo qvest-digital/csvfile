@@ -233,8 +233,7 @@ public class CSVFileReader extends CSVFile {
      * @throws FileNotFoundException        if the file to be read does not exist
      * @throws UnsupportedEncodingException if the named charset is not supported
      */
-    public CSVFileReader(final String inputFileName, final String charsetName,
-      final char sep, final char qual)
+    public CSVFileReader(final String inputFileName, final String charsetName, final char sep, final char qual)
       throws FileNotFoundException, UnsupportedEncodingException {
         this(new FileInputStream(inputFileName), charsetName, sep, qual);
     }
@@ -248,8 +247,7 @@ public class CSVFileReader extends CSVFile {
      * @param qual        The text qualifier to be used; overwrites the default one
      * @throws UnsupportedEncodingException if the named charset is not supported
      */
-    public CSVFileReader(final InputStream stream, final String charsetName,
-      final char sep, final char qual)
+    public CSVFileReader(final InputStream stream, final String charsetName, final char sep, final char qual)
       throws UnsupportedEncodingException {
         super(sep, qual);
         in = new BufferedReader(new InputStreamReader(stream, charsetName));
@@ -278,11 +276,11 @@ public class CSVFileReader extends CSVFile {
      *
      * @param firstLine result of in.readLine() if called by parent for preparation
      *                  already (can only happen if instantiated with a BufferedReader)
-     * @return List of strings containing each field from the next line of the file
+     * @return List of String containing each field from the next line of the file
      * @throws IOException if an error occurs while reading the new line from the file
      */
-    public List readFields(final String firstLine) throws IOException {
-        List fields = new ArrayList();
+    public List<String> readFields(final String firstLine) throws IOException {
+        List<String> fields = new ArrayList<>();
         StringBuffer sb = new StringBuffer();
         line = firstLine;
         if (line == null) {

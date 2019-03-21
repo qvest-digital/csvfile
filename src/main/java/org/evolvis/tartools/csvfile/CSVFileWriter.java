@@ -93,7 +93,8 @@ public class CSVFileWriter extends CSVFile {
      * @param outputFileName The name of the CSV file to be opened for writing
      * @throws IOException if an error occurs while creating the file
      */
-    public CSVFileWriter(String outputFileName) throws IOException {
+    public CSVFileWriter(final String outputFileName)
+      throws IOException {
         this(outputFileName, DEFAULT_FIELD_SEPARATOR);
     }
 
@@ -104,7 +105,8 @@ public class CSVFileWriter extends CSVFile {
      * @param sep            The field separator to be used; overwrites the default one
      * @throws IOException if an error occurs while creating the file
      */
-    public CSVFileWriter(String outputFileName, char sep) throws IOException {
+    public CSVFileWriter(final String outputFileName, final char sep)
+      throws IOException {
         this(outputFileName, sep, DEFAULT_TEXT_QUALIFIER);
     }
 
@@ -116,7 +118,8 @@ public class CSVFileWriter extends CSVFile {
      * @param qual           The text qualifier to be used; overwrites the default one
      * @throws IOException if an error occurs while creating the file
      */
-    public CSVFileWriter(String outputFileName, char sep, char qual) throws IOException {
+    public CSVFileWriter(final String outputFileName, final char sep, final char qual)
+      throws IOException {
         this(new FileWriter(outputFileName), sep, qual);
     }
 
@@ -127,7 +130,7 @@ public class CSVFileWriter extends CSVFile {
      * @param sep    The field separator to be used; overwrites the default one
      * @param qual   The text qualifier to be used; overwrites the default one
      */
-    public CSVFileWriter(Writer writer, char sep, char qual) {
+    public CSVFileWriter(final Writer writer, final char sep, final char qual) {
         super(sep, qual);
         out = new PrintWriter(new BufferedWriter(writer));
     }
@@ -145,7 +148,7 @@ public class CSVFileWriter extends CSVFile {
      *
      * @param fields The list of strings containing the fields
      */
-    public void writeFields(List fields) {
+    public void writeFields(final List fields) {
         int n = fields.size();
         for (int i = 0; i < n; i++) {
             out.print(prepareField(fields.get(i)));
@@ -156,8 +159,8 @@ public class CSVFileWriter extends CSVFile {
         out.println();
     }
 
-    private String prepareField(Object field) {
-        String fieldString = (field != null) ? field.toString() : "";
+    private String prepareField(final Object field) {
+        String fieldString = field == null ? "" : field.toString();
         if (fieldString.indexOf(fieldSeparator) >= 0 ||
           fieldString.indexOf('\n') >= 0 ||
           fieldString.indexOf('\r') >= 0 ||
