@@ -2,9 +2,12 @@ package org.evolvis.tartools.csvfile.testsuite;
 
 import org.evolvis.tartools.csvfile.CSVFileReader;
 import org.evolvis.tartools.csvfile.CSVFileWriter;
+import org.evolvis.tartools.csvfile.example.CSVFileNilReader;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -17,11 +20,14 @@ import static org.junit.Assert.assertNull;
 
 public class CSVFileTest {
     private static final String FILE_01 = "src/test/resources/01.csv";
+    private static final String CONT_02 = "\"\",,a,\"b\"";
 
     @Test
     public void testPos() throws IOException {
         String fc = new String(Files.readAllBytes(Paths.get(FILE_01)), StandardCharsets.UTF_8);
+        assertNotNull(fc);
         StringWriter sw = new StringWriter();
+        assertNotNull(sw);
         // comma and double quote
         CSVFileReader fr = new CSVFileReader(FILE_01);
         CSVFileWriter fw = new CSVFileWriter(sw, ',', '"');
@@ -97,5 +103,23 @@ public class CSVFileTest {
         fc = fc.replaceAll("(?m),$", "");
         // ensure the result matches
         assertEquals(fc, sw.toString());
+
+        // next case: test subclassing and exercise more functions
+        Reader sr = new StringReader(CONT_02);
+        assertNotNull(sr);
+        fr = new CSVFileNilReader(sr);
+        assertNotNull(fr);
+
+        f = fr.readFields();        // #1
+        assertNotNull(f);
+        assertEquals(4, f.size());
+        assertEquals("(null)", f.get(0));
+        assertEquals("(nil)", f.get(1));
+        assertEquals("\"a\"", f.get(2));
+        assertEquals("'b'", f.get(3));
+
+        f = fr.readFields();        // EOF
+        assertNull(f);
+        fr.close();
     }
 }
