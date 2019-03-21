@@ -38,7 +38,7 @@
 	<properties>
 		<archiver.copyright.firstyear>1999</archiver.copyright.firstyear>
 		<archiver.copyright.lastyear>2018</archiver.copyright.lastyear>
-		<archiver.copyright>Published under mutliple copyrights and aggregate licences (net licence: GNU LGPLv2.0+); Licensor: © ${archiver.copyright.lastyear} tarent solutions GmbH</archiver.copyright>
+		<archiver.copyright>Published under multiple copyrights and aggregate licences (see META-INF/LICENCE; net licence: GNU LGPLv2.0+); Licensor: © ${archiver.copyright.lastyear} tarent solutions GmbH</archiver.copyright>
 		<sonar.sources>src/main</sonar.sources>
 	</properties>
 	<scm>
