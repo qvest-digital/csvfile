@@ -148,7 +148,7 @@ public class CSVFileWriter extends CSVFile {
      *
      * @param fields The list of strings containing the fields
      */
-    public void writeFields(final List fields) {
+    public void writeFields(final List<?> fields) {
         int n = fields.size();
         for (int i = 0; i < n; i++) {
             out.print(prepareField(fields.get(i)));
