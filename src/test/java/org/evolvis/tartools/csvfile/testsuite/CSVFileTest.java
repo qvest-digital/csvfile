@@ -6,6 +6,7 @@ import org.evolvis.tartools.csvfile.example.CSVFileNilReader;
 import org.evolvis.tartools.csvfile.example.CSVFileProperWriter;
 import org.junit.Test;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -246,5 +247,28 @@ public class CSVFileTest {
         assertNotNull(fr);
         assertNotNull(fw);
         cpy(fr, fw, OUTF(11), CMPF(11));
+
+        // corner case
+        sr = new FileReader(FILE(1));
+        assertNotNull(sr);
+        BufferedReader br = new BufferedReader(sr);
+        assertNotNull(br);
+        sw = new StringWriter();
+        assertNotNull(sw);
+        String fl = br.readLine();
+        assertEquals("a,b,c", fl);
+        fr = new CSVFileReader(br);
+        fw = new CSVFileWriter(sw, ',', '"');
+        assertNotNull(fr);
+        assertNotNull(fw);
+        f = fr.readFields(fl);
+        assertNotNull(f);
+        while (f != null) {
+            fw.writeFields(f);
+            f = fr.readFields();
+        }
+        fr.close();
+        fw.close();
+        assertEquals(fc, sw.toString());
     }
 }
