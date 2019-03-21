@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.io.Reader;
 
 /**
- * Test helper class for subclassing methods
+ * Test helper class for subclassing methods.
+ * Feel free to reuse the concepts in your own projects;
+ * see also {@link CSVFileProperWriter}.
  *
  * @author mirabilos (t.glaser@tarent.de)
  */
