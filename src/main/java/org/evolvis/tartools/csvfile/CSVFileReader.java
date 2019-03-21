@@ -295,6 +295,7 @@ public class CSVFileReader extends CSVFile {
         int i = 0;
         do {
             sb.setLength(0);
+            // Hi Sonar! Forth condition can’t be tested!
             if (i < line.length() && line.charAt(i) == textQualifier) {
                 i = handleQuotedField(sb, /* skip quote */ ++i);
             } else {
