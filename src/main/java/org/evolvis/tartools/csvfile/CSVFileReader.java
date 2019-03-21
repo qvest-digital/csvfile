@@ -319,7 +319,7 @@ public class CSVFileReader extends CSVFile {
     /**
      * Handles a quoted field.
      *
-     * TODO: does not handle filler between closing char and end of field/line well
+     * Note: does not handle filler between closing char and end of field/line well.
      *
      * @param sb the {@link StringBuffer} to add the resulting field into
      * @param i  the offset of the first supposed character of the field (past the quote)

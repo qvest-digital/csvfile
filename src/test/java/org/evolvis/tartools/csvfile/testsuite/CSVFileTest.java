@@ -23,8 +23,14 @@ public class CSVFileTest {
     private static final String FILE_01 = "src/test/resources/01.csv";
     private static final String CONT_02 = "\"\",,a,\"b\"";
     private static final byte[] CONT_03 = { 'm', (byte) 0xE4, 'h' };
-    private static final String CMPF_03 = "src/test/resources/03.csv";
-    private static final String OUTF_03 = "target/03.csv";
+
+    private static String CMPF(final int nr) {
+        return String.format("src/test/resources/%02d.csv", nr);
+    }
+
+    private static String OUTF(final int nr) {
+        return String.format("target/%02d.csv", nr);
+    }
 
     private void cpy(final CSVFileReader r, final CSVFileWriter w, final String of, final String cmpf)
       throws IOException {
@@ -143,7 +149,11 @@ public class CSVFileTest {
 
         // now with encoding
         fr = new CSVFileReader(new ByteArrayInputStream(CONT_03), StandardCharsets.ISO_8859_1.name());
-        fw = new CSVFileWriter(OUTF_03);
-        cpy(fr, fw, OUTF_03, CMPF_03);
+        fw = new CSVFileWriter(OUTF(3));
+        cpy(fr, fw, OUTF(3), CMPF(3));
+
+        fr = new CSVFileReader(OUTF(3), StandardCharsets.ISO_8859_1.name());
+        fw = new CSVFileWriter(OUTF(4));
+        cpy(fr, fw, OUTF(4), CMPF(4));
     }
 }
