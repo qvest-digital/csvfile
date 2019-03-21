@@ -40,6 +40,9 @@
 		<archiver.copyright.lastyear>2018</archiver.copyright.lastyear>
 		<archiver.copyright>Published under multiple copyrights and aggregate licences (see META-INF/LICENCE; net licence: GNU LGPLv2.0+); Licensor: © ${archiver.copyright.lastyear} tarent solutions GmbH</archiver.copyright>
 		<sonar.sources>src/main</sonar.sources>
+		<sonar.tests>src/test</sonar.tests>
+		<!-- testing -->
+		<junit.version>4.12</junit.version>
 	</properties>
 	<scm>
 		<connection>scm:git:https://evolvis.org/anonscm/git/tartools/csvfile.git</connection>
@@ -47,6 +50,14 @@
 		<url>https://evolvis.org/plugins/scmgit/cgi-bin/gitweb.cgi?p=tartools/csvfile.git</url>
 		<tag>HEAD</tag>
 	</scm>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
