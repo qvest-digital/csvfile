@@ -43,7 +43,7 @@ fi
     tee /dev/stderr | sed -n \
     -e 's/ -- module .*$//' \
     -e '/:test$/d' \
-    -e '/^\[INFO]    org.evolvis.tartools:timestamp-utc/d' \
+    -e '/^\[INFO]    org.evolvis.tartools:csvfile/d' \
     -e '/^\[INFO]    \([^:]*\):\([^:]*\):jar:\([^:]*\):\([^:]*\)$/s//\1:\2 \3 \4 ok/p' \
     >ckdep.tmp
 # add static dependencies from embedded files, for SecurityWatch
