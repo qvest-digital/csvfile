@@ -99,4 +99,11 @@ public class SSVFileWriterTest {
         s = "a" + (char) 0x0D + (char) 0x0D + (char) 0x0A + (char) 0x0A + "b";
         assertEquals("a" + CR + CR + CR + "b", w.prepareField(s));
     }
+
+    @Test
+    public void testPosNilObject() {
+        final StringWriter sw = new StringWriter();
+        final SSVFileWriter w = new SSVFileWriter(sw);
+        assertEquals("", w.prepareField(null));
+    }
 }
