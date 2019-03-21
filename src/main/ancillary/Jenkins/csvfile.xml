@@ -114,7 +114,7 @@ H * * * *
       <branch></branch>
       <language></language>
       <mavenOpts></mavenOpts>
-      <jobAdditionalProperties>-Dsonar.projectName=timestamp-utc</jobAdditionalProperties>
+      <jobAdditionalProperties>-Dsonar.projectName=csvfile</jobAdditionalProperties>
       <settings class="jenkins.mvn.DefaultSettingsProvider"/>
       <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
       <usePrivateRepository>false</usePrivateRepository>
