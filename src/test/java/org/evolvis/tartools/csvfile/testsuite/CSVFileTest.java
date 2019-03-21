@@ -20,9 +20,13 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 public class CSVFileTest {
-    private static final String FILE_01 = "src/test/resources/01.csv";
     private static final String CONT_02 = "\"\",,a,\"b\"";
     private static final byte[] CONT_03 = { 'm', (byte) 0xE4, 'h' };
+    private static final byte[] CONT_05 = { '|', 'a', ';', 'b', '|', ';', (byte) 0xFC };
+
+    private static String FILE(final int nr) {
+        return String.format("src/test/resources/%02d.in", nr);
+    }
 
     private static String CMPF(final int nr) {
         return String.format("src/test/resources/%02d.csv", nr);
@@ -49,12 +53,12 @@ public class CSVFileTest {
 
     @Test
     public void testPos() throws IOException {
-        String fc = new String(Files.readAllBytes(Paths.get(FILE_01)), StandardCharsets.UTF_8);
+        String fc = new String(Files.readAllBytes(Paths.get(FILE(1))), StandardCharsets.UTF_8);
         assertNotNull(fc);
         StringWriter sw = new StringWriter();
         assertNotNull(sw);
         // comma and double quote
-        CSVFileReader fr = new CSVFileReader(FILE_01);
+        CSVFileReader fr = new CSVFileReader(FILE(1));
         CSVFileWriter fw = new CSVFileWriter(sw, ',', '"');
         assertNotNull(fr);
         assertNotNull(fw);
@@ -148,12 +152,43 @@ public class CSVFileTest {
         fr.close();
 
         // now with encoding
-        fr = new CSVFileReader(new ByteArrayInputStream(CONT_03), StandardCharsets.ISO_8859_1.name());
+        fr = new CSVFileReader(new ByteArrayInputStream(CONT_03),
+          StandardCharsets.ISO_8859_1.name());
         fw = new CSVFileWriter(OUTF(3));
         cpy(fr, fw, OUTF(3), CMPF(3));
 
         fr = new CSVFileReader(OUTF(3), StandardCharsets.ISO_8859_1.name());
         fw = new CSVFileWriter(OUTF(4));
         cpy(fr, fw, OUTF(4), CMPF(4));
+
+        fr = new CSVFileReader(new ByteArrayInputStream(CONT_05),
+          StandardCharsets.ISO_8859_1.name(), ';');
+        fw = new CSVFileWriter(OUTF(5), '\t');
+        cpy(fr, fw, OUTF(5), CMPF(5));
+
+        fr = new CSVFileReader(new ByteArrayInputStream(CONT_05),
+          StandardCharsets.ISO_8859_1.name(), ';', '|');
+        fw = new CSVFileWriter(OUTF(6), '\t', '"');
+        cpy(fr, fw, OUTF(6), CMPF(6));
+
+        fr = new CSVFileReader(OUTF(6),
+          StandardCharsets.ISO_8859_1.name(), ';');
+        fw = new CSVFileWriter(OUTF(7), '\t', '!');
+        cpy(fr, fw, OUTF(7), CMPF(7));
+
+        // methinks this breaks the spec; the second output field
+        // should be "\tÃ¼\t\tÃ¼\t" but really is "Ã¼\tÃ¼" having
+        // the quote character occur in the middle of a field and
+        // only once‽
+        fr = new CSVFileReader(FILE(8),
+          StandardCharsets.ISO_8859_1.name(), '\t', '!');
+        fw = new CSVFileWriter(OUTF(8), '\t', '!');
+        assertEquals(fw.getFieldSeparator(), fr.getFieldSeparator());
+        assertEquals(fw.getTextQualifier(), fr.getTextQualifier());
+        fw.setFieldSeparator('!');
+        fw.setTextQualifier('\t');
+        assertEquals(fw.getFieldSeparator(), fr.getTextQualifier());
+        assertEquals(fw.getTextQualifier(), fr.getFieldSeparator());
+        cpy(fr, fw, OUTF(8), CMPF(8));
     }
 }

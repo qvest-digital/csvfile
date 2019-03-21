@@ -79,6 +79,9 @@ import java.util.List;
  * CSVFileWriter is a class derived from {@link CSVFile}
  * used to format some fields into a new CSV file.
  *
+ * Note: the presence of a sole quote character (“text qualifier”) in an
+ * output field breaks the CSV spec as the field is then not quoted‽
+ *
  * @author Fabrizio Fazzino
  */
 public class CSVFileWriter extends CSVFile {
