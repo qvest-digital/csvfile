@@ -16,13 +16,13 @@ public class CSVFileNilReader extends CSVFileReader {
     /**
      * Handles a quoted field.
      *
-     * @param sb the {@link StringBuffer} to add the resulting field into
+     * @param sb the {@link StringBuilder} to add the resulting field into
      * @param i  the offset of the first supposed character of the field (past the quote)
      * @return index of next separator
      * @throws IOException if input cannot be read
      */
     @Override
-    protected int handleQuotedField(final StringBuffer sb, final int i) throws IOException {
+    protected int handleQuotedField(final StringBuilder sb, final int i) throws IOException {
         assert (textQualifier == DEFAULT_TEXT_QUALIFIER);
         sb.append('\'');
         final int rv = super.handleQuotedField(sb, i);
@@ -38,12 +38,12 @@ public class CSVFileNilReader extends CSVFileReader {
     /**
      * Handles an unquoted field.
      *
-     * @param sb the {@link StringBuffer} to add the resulting field into
+     * @param sb the {@link StringBuilder} to add the resulting field into
      * @param i  the offset of the first supposed character of the field
      * @return index of next separator
      */
     @Override
-    protected int handlePlainField(final StringBuffer sb, final int i) {
+    protected int handlePlainField(final StringBuilder sb, final int i) {
         assert (textQualifier == DEFAULT_TEXT_QUALIFIER);
         sb.append('"');
         final int rv = super.handlePlainField(sb, i);

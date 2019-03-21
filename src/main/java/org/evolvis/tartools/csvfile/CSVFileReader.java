@@ -281,7 +281,7 @@ public class CSVFileReader extends CSVFile {
      */
     public List<String> readFields(final String firstLine) throws IOException {
         List<String> fields = new ArrayList<>();
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         line = firstLine;
         if (line == null) {
             return null;
@@ -321,12 +321,12 @@ public class CSVFileReader extends CSVFile {
      *
      * Note: does not handle filler between closing char and end of field/line well.
      *
-     * @param sb the {@link StringBuffer} to add the resulting field into
+     * @param sb the {@link StringBuilder} to add the resulting field into
      * @param i  the offset of the first supposed character of the field (past the quote)
      * @return index of next separator
      * @throws IOException if input cannot be read
      */
-    protected int handleQuotedField(final StringBuffer sb, final int i)
+    protected int handleQuotedField(final StringBuilder sb, final int i)
       throws IOException {
         int j;
         int len = line.length();
@@ -363,11 +363,11 @@ public class CSVFileReader extends CSVFile {
     /**
      * Handles an unquoted field.
      *
-     * @param sb the {@link StringBuffer} to add the resulting field into
+     * @param sb the {@link StringBuilder} to add the resulting field into
      * @param i  the offset of the first supposed character of the field
      * @return index of next separator
      */
-    protected int handlePlainField(final StringBuffer sb, final int i) {
+    protected int handlePlainField(final StringBuilder sb, final int i) {
         // look for separator
         int j = line.indexOf(fieldSeparator, i);
         if (j == -1) {
