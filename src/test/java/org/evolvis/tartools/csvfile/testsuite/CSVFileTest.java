@@ -3,6 +3,7 @@ package org.evolvis.tartools.csvfile.testsuite;
 import org.evolvis.tartools.csvfile.CSVFileReader;
 import org.evolvis.tartools.csvfile.CSVFileWriter;
 import org.evolvis.tartools.csvfile.example.CSVFileNilReader;
+import org.evolvis.tartools.csvfile.example.CSVFileProperWriter;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -190,5 +191,17 @@ public class CSVFileTest {
         assertEquals(fw.getFieldSeparator(), fr.getTextQualifier());
         assertEquals(fw.getTextQualifier(), fr.getFieldSeparator());
         cpy(fr, fw, OUTF(8), CMPF(8));
+
+        // do that properly; you’ll see!
+        fr = new CSVFileReader(FILE(8),
+          StandardCharsets.ISO_8859_1.name(), '\t', '!');
+        fw = new CSVFileProperWriter(OUTF(9), '\t', '!');
+        assertEquals(fw.getFieldSeparator(), fr.getFieldSeparator());
+        assertEquals(fw.getTextQualifier(), fr.getTextQualifier());
+        fw.setFieldSeparator('!');
+        fw.setTextQualifier('\t');
+        assertEquals(fw.getFieldSeparator(), fr.getTextQualifier());
+        assertEquals(fw.getTextQualifier(), fr.getFieldSeparator());
+        cpy(fr, fw, OUTF(9), CMPF(9));
     }
 }

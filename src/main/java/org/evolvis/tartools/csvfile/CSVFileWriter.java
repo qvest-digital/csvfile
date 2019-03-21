@@ -162,7 +162,13 @@ public class CSVFileWriter extends CSVFile {
         out.println();
     }
 
-    private String prepareField(final Object field) {
+    /**
+     * Prepares a field for output by stringifying the passed object and quoting it.
+     *
+     * @param field to prepare
+     * @return quoted string
+     */
+    protected String prepareField(final Object field) {
         String fieldString = field == null ? "" : field.toString();
         if (fieldString.indexOf(fieldSeparator) >= 0 ||
           fieldString.indexOf('\n') >= 0 ||

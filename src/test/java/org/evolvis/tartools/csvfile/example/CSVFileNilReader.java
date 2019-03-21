@@ -5,6 +5,11 @@ import org.evolvis.tartools.csvfile.CSVFileReader;
 import java.io.IOException;
 import java.io.Reader;
 
+/**
+ * Test helper class for subclassing methods
+ *
+ * @author mirabilos (t.glaser@tarent.de)
+ */
 public class CSVFileNilReader extends CSVFileReader {
     /**
      * Handles a quoted field.
