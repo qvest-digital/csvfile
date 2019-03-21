@@ -1,22 +1,61 @@
-tsutc (TimestampWithoutTimezone) is Copyright
- © 2016, 2018 mirabilos (t.glaser@tarent.de)
+The CSVFile tools are a collection of classes to deal with CSV files
+(comma-separated values). They have quite a history. This current
+edition, developed alongside VerA.web by ⮡ tarent, is published under
+the terms of the GNU Lesser or Library General Public License, any
+version published by the Free Software Foundation.
 Licensor is tarent solutions GmbH, http://www.tarent.de/
 
-TimestampWithoutTimezoneTypeDescriptor is a derivative work of
-Hibernate, Relational Persistence for Idiomatic Java, 5.1.0.FINAL,
-Copyright © 2010, 2011, 2012, 2015, 2016 Red Hat, Inc. (under CLA)
+Copyright holders and contributors:
 
-This library is free software; you can redistribute it and/or
-modify it under the terms of the GNU Lesser General Public
-License as published by the Free Software Foundation; either
-version 2.1 of the License, or (at your option) any later version.
+Copyright © 2016 Атанас Александров (a.alexandrov@tarent.de)
+Copyright © 2006 Christoph Jerolimov (jerolimov@gmx.de)
+Copyright © 2008 Carsten Klein (c.klein@tarent.de)
+Copyright © 2005 Michael Klink (m.klink@tarent.de)
+Copyright © 2013, 2015, 2018 mirabilos (t.glaser@tarent.de)
+and older code, Copyright © 2004–2008 ⮡ tarent GmbH and contributors.
 
-This library is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-Lesser General Public License for more details.
+Copyright © 2005 Fabrizio Fazzino (under GNU LGPL) — also on
+http://sourceforge.net/projects/csvfile
 
-You should have received a copy of the GNU Lesser General Public
-License (as file COPYING in the META-INF directory) along with
-this library; if not, write to the Free Software Foundation, Inc.,
-51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+Published as part of Ian’s Java CookBook, 2002 (under 2-clause BSD):
+
+Copyright (c) Ian F. Darwin, http://www.darwinsys.com/, 1996–2001
+Copyright (c) Ben Ballard, ca. 2001
+All rights reserved. Software written by Ian F. Darwin and others.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions
+are met:
+1. Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS''
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS
+BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+
+Java, the Duke mascot, and all variants of Sun's Java "steaming coffee
+cup" logo are trademarks of Sun Microsystems. Sun's, and James Gosling's,
+pioneering role in inventing and promulgating (and standardizing) the Java
+language and environment is gratefully acknowledged.
+
+The pioneering role of Dennis Ritchie and Bjarne Stroustrup, of AT&T, for
+inventing predecessor languages C and C++ is also gratefully acknowledged.
+
+Copyright (C) 1999 Lucent Technologies
+Adapted from a C++ original excerpted from “The Practice of Programming”
+by Brian Kernighan and Rob Pike. Included by permission of the <a
+href="http://www.informit.com/store/practice-of-programming-9780201615869"
+title="http://tpop.awl.com/">Addison-Wesley</a> web site, which says:
+<cite>“You may use this code for any purpose, as long as you leave the
+copyright notice and book citation attached.”</cite> I have done so.
