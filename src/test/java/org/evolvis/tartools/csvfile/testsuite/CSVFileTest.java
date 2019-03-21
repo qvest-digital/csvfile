@@ -5,6 +5,7 @@ import org.evolvis.tartools.csvfile.CSVFileWriter;
 import org.evolvis.tartools.csvfile.example.CSVFileNilReader;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
@@ -21,6 +22,24 @@ import static org.junit.Assert.assertNull;
 public class CSVFileTest {
     private static final String FILE_01 = "src/test/resources/01.csv";
     private static final String CONT_02 = "\"\",,a,\"b\"";
+    private static final byte[] CONT_03 = { 'm', (byte) 0xE4, 'h' };
+    private static final String CMPF_03 = "src/test/resources/03.csv";
+    private static final String OUTF_03 = "target/03.csv";
+
+    private void cpy(final CSVFileReader r, final CSVFileWriter w, final String of, final String cmpf)
+      throws IOException {
+        List<String> fields = r.readFields();
+        while (fields != null) {
+            w.writeFields(fields);
+            fields = r.readFields();
+        }
+        r.close();
+        w.close();
+
+        String os = new String(Files.readAllBytes(Paths.get(of)), StandardCharsets.UTF_8);
+        String cs = new String(Files.readAllBytes(Paths.get(cmpf)), StandardCharsets.UTF_8);
+        assertEquals(cs, os);
+    }
 
     @Test
     public void testPos() throws IOException {
@@ -121,5 +140,10 @@ public class CSVFileTest {
         f = fr.readFields();        // EOF
         assertNull(f);
         fr.close();
+
+        // now with encoding
+        fr = new CSVFileReader(new ByteArrayInputStream(CONT_03), StandardCharsets.ISO_8859_1.name());
+        fw = new CSVFileWriter(OUTF_03);
+        cpy(fr, fw, OUTF_03, CMPF_03);
     }
 }
