@@ -203,5 +203,16 @@ public class CSVFileTest {
         assertEquals(fw.getFieldSeparator(), fr.getTextQualifier());
         assertEquals(fw.getTextQualifier(), fr.getFieldSeparator());
         cpy(fr, fw, OUTF(9), CMPF(9));
+
+        // same fun but w/o charsets
+        fr = new CSVFileReader(OUTF(6), ';');
+        fw = new CSVFileWriter(OUTF(10), '\t', '!');
+        cpy(fr, fw, OUTF(10), CMPF(10));
+
+        fr = new CSVFileReader(FILE(8), '\t', '!');
+        fw = new CSVFileProperWriter(OUTF(11), '!', '\t');
+        assertEquals(fw.getFieldSeparator(), fr.getTextQualifier());
+        assertEquals(fw.getTextQualifier(), fr.getFieldSeparator());
+        cpy(fr, fw, OUTF(11), CMPF(11));
     }
 }
