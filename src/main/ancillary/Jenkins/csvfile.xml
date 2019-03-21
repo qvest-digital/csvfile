@@ -1,20 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <maven2-moduleset plugin="maven-plugin@2.10">
   <actions/>
-  <description>&lt;p&gt;Parent POM for &#x2ba1; Maven projects&lt;/p&gt;&#xd;
-&lt;p&gt;Used by:&lt;/p&gt;&lt;ul&gt;&#xd;
-&lt;li&gt;org.evolvis.tartools&lt;ul&gt;&#xd;
-  &lt;li&gt;Background-Jobs&lt;/li&gt;&#xd;
-  &lt;li&gt;Extract-Tool&lt;/li&gt;&#xd;
-  &lt;li&gt;tsutc&lt;/li&gt;&#xd;
- &lt;/ul&gt;&lt;/li&gt;&#xd;
-&lt;li&gt;org.evolvis.bsi&lt;ul&gt;&#xd;
-  &lt;li style=&#34;color:grey;&#34;&gt;&lt;i&gt;(eol)&lt;/i&gt; kolab-webadmin&lt;/li&gt;&#xd;
-  &lt;li style=&#34;color:grey;&#34;&gt;&lt;i&gt;(eol)&lt;/i&gt; kolab-ws&lt;/li&gt;&#xd;
- &lt;/ul&gt;&lt;/li&gt;&#xd;
-&lt;li&gt;kpitool&lt;/li&gt;&#xd;
-&lt;li&gt;VerA.web&lt;/li&gt;&#xd;
-&lt;/ul&gt;</description>
+  <description>CSV file reader/writer</description>
   <logRotator class="hudson.tasks.LogRotator">
     <daysToKeep>-1</daysToKeep>
     <numToKeep>5</numToKeep>
@@ -30,6 +17,7 @@
       <permission>hudson.model.Item.Build:tglase</permission>
       <permission>hudson.model.Item.Cancel:tglase</permission>
       <permission>hudson.model.Item.Configure:tglase</permission>
+      <permission>hudson.model.Item.Delete:tglase</permission>
       <permission>hudson.model.Item.Read:tglase</permission>
       <permission>hudson.model.Item.Release:tglase</permission>
       <permission>hudson.model.Item.Workspace:tglase</permission>
@@ -52,12 +40,15 @@ Only relevant when performing a release.</description>
         </hudson.model.ChoiceParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <org.jenkins.plugins.lockableresources.RequiredResourcesProperty plugin="lockable-resources@1.7">
+      <resourceNames>mr_tartools</resourceNames>
+    </org.jenkins.plugins.lockableresources.RequiredResourcesProperty>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.12">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>git+ssh://maven@evolvis.org/scmrepos/git/tartools/mvnparent.git</url>
+        <url>git+ssh://maven@evolvis.org/scmrepos/git/tartools/csvfile.git</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
@@ -67,7 +58,7 @@ Only relevant when performing a release.</description>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
     <browser class="hudson.plugins.git.browser.GitWeb">
-      <url>https://evolvis.org/plugins/scmgit/cgi-bin/gitweb.cgi?p=tartools/mvnparent.git</url>
+      <url>https://evolvis.org/plugins/scmgit/cgi-bin/gitweb.cgi?p=tartools/csvfile.git</url>
     </browser>
     <submoduleCfg class="list"/>
     <extensions>
@@ -80,13 +71,21 @@ Only relevant when performing a release.</description>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers/>
+  <jdk>(Inherit From Job)</jdk>
+  <triggers>
+    <hudson.triggers.SCMTrigger>
+      <spec># alle Stunde
+H * * * *
+</spec>
+      <ignorePostCommitHooks>false</ignorePostCommitHooks>
+    </hudson.triggers.SCMTrigger>
+  </triggers>
   <concurrentBuild>false</concurrentBuild>
   <rootModule>
     <groupId>org.evolvis.tartools</groupId>
-    <artifactId>maven-parent</artifactId>
+    <artifactId>csvfile</artifactId>
   </rootModule>
-  <goals>-Pbuild-mvnparent -Pdstrepo-$DSTREPO_PROFILE -e clean install</goals>
+  <goals>-Pdstrepo-$DSTREPO_PROFILE -e clean install</goals>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>
   <ignoreUpstremChanges>false</ignoreUpstremChanges>
@@ -109,14 +108,25 @@ Only relevant when performing a release.</description>
       <perModuleEmail>false</perModuleEmail>
     </hudson.maven.reporters.MavenMailer>
   </reporters>
-  <publishers/>
+  <publishers>
+    <hudson.plugins.sonar.SonarPublisher plugin="sonar@2.1">
+      <jdk>(Inherit From Job)</jdk>
+      <branch></branch>
+      <language></language>
+      <mavenOpts></mavenOpts>
+      <jobAdditionalProperties>-Dsonar.projectName=timestamp-utc</jobAdditionalProperties>
+      <settings class="jenkins.mvn.DefaultSettingsProvider"/>
+      <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
+      <usePrivateRepository>false</usePrivateRepository>
+    </hudson.plugins.sonar.SonarPublisher>
+  </publishers>
   <buildWrappers>
     <org.jvnet.hudson.plugins.m2release.M2ReleaseBuildWrapper plugin="m2release@0.14.0">
       <scmUserEnvVar></scmUserEnvVar>
       <scmPasswordEnvVar></scmPasswordEnvVar>
       <releaseEnvVar>IS_M2RELEASEBUILD</releaseEnvVar>
-      <releaseGoals>-Pbuild-mvnparent -Pdstrepo-$DSTREPO_PROFILE -Dresume=false release:prepare release:perform -DpreparationGoals=&#34;clean install&#34; -Darguments=&#34;-Dgpg.passphrase=<SECRET/> -Pgpg -Pbuild-mvnparent&#34; -e</releaseGoals>
-      <dryRunGoals>-Pbuild-mvnparent -Pdstrepo-$DSTREPO_PROFILE -Dresume=false -DdryRun=true release:prepare -e</dryRunGoals>
+      <releaseGoals>-Pdstrepo-$DSTREPO_PROFILE -Dresume=false release:prepare release:perform -DpreparationGoals=&#34;clean install&#34; -Darguments=&#34;-Dgpg.passphrase=<SECRET/> -Pgpg&#34; -e</releaseGoals>
+      <dryRunGoals>-Pdstrepo-$DSTREPO_PROFILE -Dresume=false -DdryRun=true release:prepare -e</dryRunGoals>
       <selectCustomScmCommentPrefix>false</selectCustomScmCommentPrefix>
       <selectAppendHudsonUsername>false</selectAppendHudsonUsername>
       <selectScmCredentials>false</selectScmCredentials>
