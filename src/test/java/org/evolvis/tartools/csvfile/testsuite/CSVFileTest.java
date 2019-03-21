@@ -24,6 +24,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+/**
+ * Test suite (integration) for the CSVFile suite
+ *
+ * @author mirabilos (t.glaser@tarent.de)
+ */
 public class CSVFileTest {
     private static final String CONT_02 = "\"\",,a,\"b\"";
     private static final byte[] CONT_03 = { 'm', (byte) 0xE4, 'h' };
@@ -279,6 +284,12 @@ public class CSVFileTest {
         fr.close();
         fw.close();
         assertEquals(fc, sw.toString());
+
+        fr = new CSVFileReader(new FileReader(FILE(1)));
+        fw = new SSVFileWriter(OUTF(12));
+        assertNotNull(fr);
+        assertNotNull(fw);
+        cpy(fr, fw, OUTF(12), CMPF(12));
     }
 
     @Test
