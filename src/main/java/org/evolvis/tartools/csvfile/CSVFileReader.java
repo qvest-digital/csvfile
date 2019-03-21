@@ -321,8 +321,7 @@ public class CSVFileReader extends CSVFile {
     /**
      * Handles a quoted field.
      *
-     * TODO: Sehr empfindlich gegen Füllzeichen zwischen
-     * TODO: schließendem Quote und Feld- oder Zeilenende
+     * TODO: does not handle filler between closing char and end of field/line well
      *
      * @return index of next separator
      * @throws IOException if input cannot be read
