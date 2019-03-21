@@ -149,8 +149,9 @@ public abstract class CSVFile {
      * @param qual The text qualifier to be used; overwrites the default one
      */
     public CSVFile(final char sep, final char qual) {
-        setFieldSeparator(sep);
-        setTextQualifier(qual);
+        // do NOT use the setters here!
+        fieldSeparator = sep;
+        textQualifier = qual;
     }
 
     /**

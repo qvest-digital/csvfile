@@ -88,7 +88,7 @@ public class CSVFileWriter extends CSVFile {
     /**
      * The print writer linked to the CSV file to be written.
      */
-    private final PrintWriter out;
+    protected final PrintWriter out;
 
     /**
      * CSVFileWriter constructor just need the name of the CSV file that will be written.
@@ -159,6 +159,13 @@ public class CSVFileWriter extends CSVFile {
                 out.print(fieldSeparator);
             }
         }
+        emitRowSeparator();
+    }
+
+    /**
+     * Called after a list of fields has been output.
+     */
+    protected void emitRowSeparator() {
         out.println();
     }
 

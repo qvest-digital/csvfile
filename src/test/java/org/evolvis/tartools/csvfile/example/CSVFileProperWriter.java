@@ -23,6 +23,8 @@ public class CSVFileProperWriter extends CSVFileWriter {
     public CSVFileProperWriter(final String outputFileName, final char sep, final char qual)
       throws IOException {
         super(outputFileName, sep, qual);
+        // just so IntelliJ does not think access could be package-private
+        out.flush();
     }
 
     /**
