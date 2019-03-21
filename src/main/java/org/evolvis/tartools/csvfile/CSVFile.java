@@ -127,22 +127,6 @@ public abstract class CSVFile {
     protected char textQualifier;
 
     /**
-     * CSVFile constructor with the default field separator and text qualifier.
-     */
-    public CSVFile() {
-        this(DEFAULT_FIELD_SEPARATOR, DEFAULT_TEXT_QUALIFIER);
-    }
-
-    /**
-     * CSVFile constructor with a given field separator and the default text qualifier.
-     *
-     * @param sep The field separator to be used; overwrites the default one
-     */
-    public CSVFile(final char sep) {
-        this(sep, DEFAULT_TEXT_QUALIFIER);
-    }
-
-    /**
      * CSVFile constructor with given field separator and text qualifier.
      *
      * @param sep  The field separator to be used; overwrites the default one
