@@ -157,25 +157,35 @@ public class CSVFileTest {
         fr = new CSVFileReader(new ByteArrayInputStream(CONT_03),
           StandardCharsets.ISO_8859_1.name());
         fw = new CSVFileWriter(OUTF(3));
+        assertNotNull(fr);
+        assertNotNull(fw);
         cpy(fr, fw, OUTF(3), CMPF(3));
 
         fr = new CSVFileReader(OUTF(3), StandardCharsets.ISO_8859_1.name());
         fw = new CSVFileWriter(OUTF(4));
+        assertNotNull(fr);
+        assertNotNull(fw);
         cpy(fr, fw, OUTF(4), CMPF(4));
 
         fr = new CSVFileReader(new ByteArrayInputStream(CONT_05),
           StandardCharsets.ISO_8859_1.name(), ';');
         fw = new CSVFileWriter(OUTF(5), '\t');
+        assertNotNull(fr);
+        assertNotNull(fw);
         cpy(fr, fw, OUTF(5), CMPF(5));
 
         fr = new CSVFileReader(new ByteArrayInputStream(CONT_05),
           StandardCharsets.ISO_8859_1.name(), ';', '|');
         fw = new CSVFileWriter(OUTF(6), '\t', '"');
+        assertNotNull(fr);
+        assertNotNull(fw);
         cpy(fr, fw, OUTF(6), CMPF(6));
 
         fr = new CSVFileReader(OUTF(6),
           StandardCharsets.ISO_8859_1.name(), ';');
         fw = new CSVFileWriter(OUTF(7), '\t', '!');
+        assertNotNull(fr);
+        assertNotNull(fw);
         cpy(fr, fw, OUTF(7), CMPF(7));
 
         // methinks this breaks the spec; the second output field
@@ -185,6 +195,8 @@ public class CSVFileTest {
         fr = new CSVFileReader(FILE(8),
           StandardCharsets.ISO_8859_1.name(), '\t', '!');
         fw = new CSVFileWriter(OUTF(8), '\t', '!');
+        assertNotNull(fr);
+        assertNotNull(fw);
         assertEquals(fw.getFieldSeparator(), fr.getFieldSeparator());
         assertEquals(fw.getTextQualifier(), fr.getTextQualifier());
         fw.setFieldSeparator('!');
@@ -197,6 +209,8 @@ public class CSVFileTest {
         fr = new CSVFileReader(FILE(8),
           StandardCharsets.ISO_8859_1.name(), '\t', '!');
         fw = new CSVFileProperWriter(OUTF(9), '\t', '!');
+        assertNotNull(fr);
+        assertNotNull(fw);
         assertEquals(fw.getFieldSeparator(), fr.getFieldSeparator());
         assertEquals(fw.getTextQualifier(), fr.getTextQualifier());
         fw.setFieldSeparator('!');
@@ -208,10 +222,14 @@ public class CSVFileTest {
         // same fun but w/o charsets
         fr = new CSVFileReader(OUTF(6), ';');
         fw = new CSVFileWriter(OUTF(10), '\t', '!');
+        assertNotNull(fr);
+        assertNotNull(fw);
         cpy(fr, fw, OUTF(10), CMPF(10));
 
         fr = new CSVFileReader(FILE(8), '\t', '!');
         fw = new CSVFileProperWriter(OUTF(11), '!', '\t');
+        assertNotNull(fr);
+        assertNotNull(fw);
         assertEquals(fw.getFieldSeparator(), fr.getTextQualifier());
         assertEquals(fw.getTextQualifier(), fr.getFieldSeparator());
         cpy(fr, fw, OUTF(11), CMPF(11));
@@ -219,10 +237,14 @@ public class CSVFileTest {
         // really… identical…
         fr = new CSVFileReader(new FileReader(OUTF(6)), ';');
         fw = new CSVFileWriter(OUTF(10), '\t', '!');
+        assertNotNull(fr);
+        assertNotNull(fw);
         cpy(fr, fw, OUTF(10), CMPF(10));
 
         fr = new CSVFileReader(new FileReader(FILE(8)), '\t', '!');
         fw = new CSVFileProperWriter(OUTF(11), '!', '\t');
+        assertNotNull(fr);
+        assertNotNull(fw);
         cpy(fr, fw, OUTF(11), CMPF(11));
     }
 }

@@ -97,7 +97,7 @@ public class CSVFileReader extends CSVFile {
     private final BufferedReader in;
 
     /**
-     * Die aktuell gelesene Zeile.
+     * The currently being read input line.
      */
     private String line = null;
 

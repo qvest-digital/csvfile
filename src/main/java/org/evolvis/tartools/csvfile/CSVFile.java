@@ -78,7 +78,7 @@ package org.evolvis.tartools.csvfile;
  * The simplest example for using the classes contained in this package is
  * the following example that simply converts one CSV file into another one
  * that makes use of a different notation for field separator and text
- * qualifier. It just comprises the following lines:
+ * qualifier (quote character). It just comprises the following lines:
  *
  * <pre>
  * package org.evolvis.tartools.csvfile;
