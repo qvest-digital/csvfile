@@ -2,6 +2,7 @@ package org.evolvis.tartools.csvfile.testsuite;
 
 import org.evolvis.tartools.csvfile.CSVFileReader;
 import org.evolvis.tartools.csvfile.CSVFileWriter;
+import org.evolvis.tartools.csvfile.SSVFileWriter;
 import org.evolvis.tartools.csvfile.example.CSVFileNilReader;
 import org.evolvis.tartools.csvfile.example.CSVFileProperWriter;
 import org.junit.Test;
@@ -16,6 +17,7 @@ import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -48,8 +50,15 @@ public class CSVFileTest {
         }
         r.close();
         w.close();
+        cmp(of, cmpf);
+    }
 
+    private void cmp(final String of, final String cmpf) throws IOException {
         String os = new String(Files.readAllBytes(Paths.get(of)), StandardCharsets.UTF_8);
+        cmps(cmpf, os);
+    }
+
+    private void cmps(final String cmpf, final String os) throws IOException {
         String cs = new String(Files.readAllBytes(Paths.get(cmpf)), StandardCharsets.UTF_8);
         assertEquals(cs, os);
     }
@@ -270,5 +279,21 @@ public class CSVFileTest {
         fr.close();
         fw.close();
         assertEquals(fc, sw.toString());
+    }
+
+    @Test
+    public void testPosSSVFromList() throws IOException {
+        final StringWriter sw = new StringWriter();
+        final SSVFileWriter w = new SSVFileWriter(sw);
+        final List<String> l = new ArrayList<>();
+        l.add("meow\"miau mio" + (char) 0x0D + (char) 0x0A + "mraw,nyan;mewl");
+        l.add("🐈");
+        w.writeFields(l);
+        l.clear();
+        l.add("챁");
+        l.add("ꊶ");
+        w.writeFields(l);
+        w.close();
+        cmps(CMPF(90), sw.toString());
     }
 }
