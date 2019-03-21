@@ -7,6 +7,7 @@ import org.evolvis.tartools.csvfile.example.CSVFileProperWriter;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
@@ -213,6 +214,15 @@ public class CSVFileTest {
         fw = new CSVFileProperWriter(OUTF(11), '!', '\t');
         assertEquals(fw.getFieldSeparator(), fr.getTextQualifier());
         assertEquals(fw.getTextQualifier(), fr.getFieldSeparator());
+        cpy(fr, fw, OUTF(11), CMPF(11));
+
+        // really… identical…
+        fr = new CSVFileReader(new FileReader(OUTF(6)), ';');
+        fw = new CSVFileWriter(OUTF(10), '\t', '!');
+        cpy(fr, fw, OUTF(10), CMPF(10));
+
+        fr = new CSVFileReader(new FileReader(FILE(8)), '\t', '!');
+        fw = new CSVFileProperWriter(OUTF(11), '!', '\t');
         cpy(fr, fw, OUTF(11), CMPF(11));
     }
 }
