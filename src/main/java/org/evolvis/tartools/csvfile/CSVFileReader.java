@@ -321,6 +321,8 @@ public class CSVFileReader extends CSVFile {
      *
      * TODO: does not handle filler between closing char and end of field/line well
      *
+     * @param sb the {@link StringBuffer} to add the resulting field into
+     * @param i  the offset of the first supposed character of the field (past the quote)
      * @return index of next separator
      * @throws IOException if input cannot be read
      */
@@ -361,6 +363,8 @@ public class CSVFileReader extends CSVFile {
     /**
      * Handles an unquoted field.
      *
+     * @param sb the {@link StringBuffer} to add the resulting field into
+     * @param i  the offset of the first supposed character of the field
      * @return index of next separator
      */
     protected int handlePlainField(final StringBuffer sb, final int i) {
