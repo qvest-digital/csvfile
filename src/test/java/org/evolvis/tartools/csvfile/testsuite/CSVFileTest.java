@@ -275,6 +275,15 @@ public class CSVFileTest {
         fr = new CSVFileReader(new FileReader(FILE(1)));
         fw = new SSVFileWriter(OUTF(12));
         cpy(fr, fw, OUTF(12), CMPF(12));
+
+        // quoted strings spanning input lines
+        fr = new CSVFileReader(new FileReader(FILE(14)));
+        fw = new SSVFileWriter(OUTF(14));
+        cpy(fr, fw, OUTF(14), CMPF(14));
+
+        fr = new CSVFileReader(new FileReader(FILE(15)));
+        fw = new SSVFileWriter(OUTF(15));
+        cpy(fr, fw, OUTF(15), CMPF(15));
     }
 
     @Test
