@@ -15,8 +15,8 @@
 	<url>https://evolvis.org/plugins/scmgit/cgi-bin/gitweb.cgi?p=tartools/csvfile.git</url>
 	<licenses>
 		<license>
-			<name>GNU Lesser General Public License (LGPL), version 2.1 or later</name>
-			<url>http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html</url>
+			<name>GNU Library or Lesser General Public License (LGPL), version 2.0 or later</name>
+			<url>http://www.gnu.org/licenses/old-licenses/lgpl-2.0.html</url>
 		</license>
 		<license>
 			<name>2-clause BSD</name>
@@ -38,7 +38,7 @@
 	<properties>
 		<archiver.copyright.firstyear>1999</archiver.copyright.firstyear>
 		<archiver.copyright.lastyear>2018</archiver.copyright.lastyear>
-		<archiver.copyright>Published under mutliple copyrights and aggregate licences (net licence: GNU LGPLv2.1+); Licensor: © ${archiver.copyright.lastyear} tarent solutions GmbH</archiver.copyright>
+		<archiver.copyright>Published under mutliple copyrights and aggregate licences (net licence: GNU LGPLv2.0+); Licensor: © ${archiver.copyright.lastyear} tarent solutions GmbH</archiver.copyright>
 		<sonar.sources>src/main</sonar.sources>
 	</properties>
 	<scm>
