@@ -11,15 +11,15 @@ package org.evolvis.tartools.csvfile.example;
  *
  * Copyright holders and contributors:
  *
- * Copyright © 2018, 2019 mirabilos (t.glaser@tarent.de)
+ * Copyright © 2018, 2019 mirabilos <t.glaser@tarent.de>
  * Licensor is tarent solutions GmbH, http://www.tarent.de/
  *
  * Formerly developed as part of VerA.web:
- * Copyright © 2016 Атанас Александров (a.alexandrov@tarent.de)
- * Copyright © 2006 Christoph Jerolimov (jerolimov@gmx.de)
- * Copyright © 2008 Carsten Klein (c.klein@tarent.de)
- * Copyright © 2005 Michael Klink (m.klink@tarent.de)
- * Copyright © 2013, 2015, 2018 mirabilos (t.glaser@tarent.de)
+ * Copyright © 2016 Атанас Александров <a.alexandrov@tarent.de>
+ * Copyright © 2006 Christoph Jerolimov <jerolimov@gmx.de>
+ * Copyright © 2008 Carsten Klein <c.klein@tarent.de>
+ * Copyright © 2005 Michael Klink <m.klink@tarent.de>
+ * Copyright © 2013, 2015, 2018 mirabilos <t.glaser@tarent.de>
  * and older code, Copyright © 2004–2008 ⮡ tarent GmbH and contributors.
  *
  * Copyright © 2005 Fabrizio Fazzino (under GNU LGPL) — also on
@@ -40,31 +40,32 @@ package org.evolvis.tartools.csvfile.example;
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
  *
- * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS''
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
- * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS “AS IS” AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS
  * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
  * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
  * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
  * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
  * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+ * THE POSSIBILITY OF SUCH DAMAGE.
  *
- * Java, the Duke mascot, and all variants of Sun's Java "steaming coffee
- * cup" logo are trademarks of Sun Microsystems. Sun's, and James Gosling's,
- * pioneering role in inventing and promulgating (and standardizing) the Java
- * language and environment is gratefully acknowledged.
+ * Java, the Duke mascot, and all variants of Sun’s Java “steaming coffee
+ * cup” logo are trademarks of Sun Microsystems. Sun’s and James Gosling’s
+ * pioneering role in inventing and promulgating (and standardising) the
+ * Java language and environment is gratefully acknowledged.
  *
- * The pioneering role of Dennis Ritchie and Bjarne Stroustrup, of AT&T, for
- * inventing predecessor languages C and C++ is also gratefully acknowledged.
+ * The pioneering role of Dennis Ritchie and Bjarne Stroustrup, of AT&T,
+ * for inventing predecessor languages C and C++ is also gratefully
+ * acknowledged.
  *
  * Copyright (C) 1999 Lucent Technologies
  * Adapted from a C++ original excerpted from “The Practice of Programming”
- * by Brian Kernighan and Rob Pike. Included by permission of the <a
- * href="http://www.informit.com/store/practice-of-programming-9780201615869"
- * title="http://tpop.awl.com/">Addison-Wesley</a> web site, which says:
+ * by Brian Kernighan and Rob Pike. Included by permission of the TPOP
+ * http://www.informit.com/store/practice-of-programming-9780201615869
+ * (at http://tpop.awl.com/ formerly) Addison-Wesley web site, which says:
  * <cite>“You may use this code for any purpose, as long as you leave the
  * copyright notice and book citation attached.”</cite> I have done so.
  */
