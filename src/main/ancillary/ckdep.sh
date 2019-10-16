@@ -22,13 +22,32 @@
 # Script to check dependencies
 
 # initialisation
-LC_ALL=C; export LC_ALL
+export LC_ALL=C
 unset LANGUAGE
 PS4='++ '
 set -e
 set -o pipefail
 cd "$(dirname "$0")"
 
+x=$(sed --posix 's/u\+/x/g' <<<'fubar fuu' 2>&1) && alias 'sed=sed --posix'
+x=$(sed -e 's/u\+/x/g' -e 's/u/X/' <<<'fubar fuu' 2>&1)
+case $?:$x {
+(0:fXbar\ fuu) ;;
+(*)
+	print -ru2 -- '[ERROR] your sed is not POSIX compliant'
+	exit 1 ;;
+}
+
+# get project metadata
+<../../../pom.xml xmlstarlet sel \
+    -N pom=http://maven.apache.org/POM/4.0.0 -T -t \
+    -c /pom:project/pom:groupId -n \
+    -c /pom:project/pom:artifactId -n \
+    -c /pom:project/pom:version -n \
+    |&
+IFS= read -pr pgID
+IFS= read -pr paID
+IFS= read -pr pVSN
 # check old file is sorted
 sort -uo ckdep.tmp ckdep.lst
 if cmp -s ckdep.lst ckdep.tmp; then
@@ -39,42 +58,49 @@ else
 	abend=1
 fi
 # analyse Maven dependencies
-(cd ../../.. && mvn -B -Dskip-test-only-dependencies dependency:list) 2>&1 | \
+(cd ../../.. && mvn -B dependency:list) 2>&1 | \
     tee /dev/stderr | sed -n \
     -e 's/ -- module .*$//' \
-    -e '/:test$/d' \
-    -e '/^\[INFO]    org.evolvis.tartools:csvfile/d' \
+    -e '/^\[INFO]    '$pgID:$paID'/d' \
     -e '/^\[INFO]    \([^:]*\):\([^:]*\):jar:\([^:]*\):\([^:]*\)$/s//\1:\2 \3 \4 ok/p' \
     >ckdep.tmp
+while IFS=' ' read ga v scope rest; do
+	[[ $scope != @(compile|runtime) ]] || print -r -- ${ga/:/ } $v
+done <ckdep.tmp | sort -u >ckdep.mvn.tmp
 # add static dependencies from embedded files, for SecurityWatch
 [[ -s ckdep.inc ]] && cat ckdep.inc >>ckdep.tmp
-# make compile scope superset provided scope
+# make compile scope superset provided scope, and either superset test scope
 x=$(sort -u <ckdep.tmp)
-lastline=
+lastp=
+lastt=
 print -r -- "$x" | while IFS= read -r line; do
-	[[ $line = "$lastline" ]] || print -r -- "$line"
-	lastline=${line/ compile / provided }
+	[[ $line = "$lastp" ]] || [[ $line = "$lastt" ]] || print -r -- "$line"
+	lastp=${line/ compile / provided }
+	lastt=${lastp/ provided / test }
 done >ckdep.tmp
 # generate file with changed dependencies set to be a to-do item
+# except we don’t licence-analyse test-only dependencies
 {
 	comm -13 ckdep.lst ckdep.tmp | sed 's/ ok$/ TO''DO/'
 	comm -12 ckdep.lst ckdep.tmp
-} | sort -uo ckdep.tmp
+} | sed 's/ test TO''DO$/ test ok/' | sort -uo ckdep.tmp
 
 # check if the list changed
-if cmp -s ckdep.lst ckdep.tmp; then
+if cmp -s ckdep.lst ckdep.tmp && cmp -s ckdep.mvn ckdep.mvn.tmp; then
 	print -ru2 -- '[INFO] list of dependencies did not change'
 else
 	(diff -u ckdep.lst ckdep.tmp || :)
 	# make the new list active
+	mv -f ckdep.mvn.tmp ckdep.mvn
 	mv -f ckdep.tmp ckdep.lst
 	# inform the user
 	print -ru2 -- '[WARNING] list of dependencies changed!'
 	abend=1
 fi
+rm -f ckdep.tmp ckdep.mvn.tmp
 # check if anything needs to be committed
 if (( abend )); then
-	print -ru2 -- '[ERROR] please commit the changed ckdep.lst file!'
+	print -ru2 -- '[ERROR] please commit the changed ckdep.{lst,mvn} files!'
 	exit 1
 fi
 
@@ -85,5 +111,4 @@ fi
 	exit 1
 fi
 
-rm -f ckdep.tmp
 exit 0
