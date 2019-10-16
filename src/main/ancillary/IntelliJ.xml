@@ -106,6 +106,7 @@
     <option name="KEEP_BLANK_LINES_BEFORE_RBRACE" value="0" />
     <indentOptions>
       <option name="CONTINUATION_INDENT_SIZE" value="2" />
+      <option name="LABEL_INDENT_SIZE" value="4" />
     </indentOptions>
   </codeStyleSettings>
   <codeStyleSettings language="HTML">
