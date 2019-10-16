@@ -26,6 +26,7 @@ import org.junit.Test;
 import java.io.StringWriter;
 
 import static org.evolvis.tartools.csvfile.SSVFileWriter.CR;
+import static org.evolvis.tartools.csvfile.SSVFileWriter.CRLF;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -38,9 +39,9 @@ public class SSVFileWriterTest {
     public void testPosEncodedLineSeparators() {
         assertEquals(1, CR.length());
         assertEquals(0x0D, CR.charAt(0));
-        assertEquals(2, SSVFileWriter.CRLF.length());
-        assertEquals(0x0D, SSVFileWriter.CRLF.charAt(0));
-        assertEquals(0x0A, SSVFileWriter.CRLF.charAt(1));
+        assertEquals(2, CRLF.length());
+        assertEquals(0x0D, CRLF.charAt(0));
+        assertEquals(0x0A, CRLF.charAt(1));
     }
 
     @Test(expected = UnsupportedOperationException.class)
