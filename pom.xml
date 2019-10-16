@@ -26,6 +26,10 @@
 			<name>Addison-Wesley TPOP excerpt permission</name>
 			<url>http://www.informit.com/store/practice-of-programming-9780201615869</url>
 		</license>
+		<license>
+			<name>The MirOS Licence</name>
+			<url>http://www.mirbsd.org/MirOS-Licence.htm</url>
+		</license>
 	</licenses>
 	<developers>
 		<developer>
@@ -37,7 +41,7 @@
 	</developers>
 	<properties>
 		<archiver.copyright.firstyear>1999</archiver.copyright.firstyear>
-		<archiver.copyright.lastyear>2018</archiver.copyright.lastyear>
+		<archiver.copyright.lastyear>2019</archiver.copyright.lastyear>
 		<archiver.copyright>Published under multiple copyrights and aggregate licences (see META-INF/LICENCE; net licence: GNU LGPLv2.0+); Licensor: © ${archiver.copyright.lastyear} tarent solutions GmbH</archiver.copyright>
 		<sonar.sources>src/main</sonar.sources>
 		<sonar.tests>src/test</sonar.tests>

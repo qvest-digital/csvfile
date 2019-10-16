@@ -4,13 +4,14 @@ package org.evolvis.tartools.csvfile;
  * The CSVFile tools are a collection of classes to deal with CSV files
  * (comma-separated values). They have quite a history. This edition is
  * developed by ⮡ tarent and published under the terms and conditions of
- * the GNU Lesser or Library General Public License, any version, as
- * published by the Free Software Foundation.
+ * the GNU LGPL (Lesser or Library General Public License), any version,
+ * as published by the Free Software Foundation. Some individual classes
+ * are available as well under more liberal terms, this isn’t.
  * Licensor is tarent solutions GmbH, http://www.tarent.de/
  *
  * Copyright holders and contributors:
  *
- * Copyright © 2018 mirabilos (t.glaser@tarent.de)
+ * Copyright © 2018, 2019 mirabilos (t.glaser@tarent.de)
  * Licensor is tarent solutions GmbH, http://www.tarent.de/
  *
  * Formerly developed as part of VerA.web:

@@ -1,14 +1,17 @@
 The CSVFile tools are a collection of classes to deal with CSV files
 (comma-separated values). They have quite a history. This edition is
 developed by ⮡ tarent and published under the terms and conditions of
-the GNU Lesser or Library General Public License, any version, as
-published by the Free Software Foundation.
+the GNU LGPL (Lesser or Library General Public License), any version,
+as published by the Free Software Foundation. Some individual files
+are available as well under more liberal terms as documented below.
+
 Licensor is tarent solutions GmbH, http://www.tarent.de/
 
 Copyright holders and contributors:
 
-Copyright © 2018 mirabilos (t.glaser@tarent.de)
-Licensor is tarent solutions GmbH, http://www.tarent.de/
+*** CSVFile, CSVFileReader, CSVFileWriter, CSVFileProperWriter ***
+
+Copyright © 2018, 2019 mirabilos (t.glaser@tarent.de)
 
 Formerly developed as part of VerA.web:
 Copyright © 2016 Атанас Александров (a.alexandrov@tarent.de)
@@ -63,3 +66,25 @@ href="http://www.informit.com/store/practice-of-programming-9780201615869"
 title="http://tpop.awl.com/">Addison-Wesley</a> web site, which says:
 <cite>“You may use this code for any purpose, as long as you leave the
 copyright notice and book citation attached.”</cite> I have done so.
+
+*** SSVFileWriter, the build scripts and test cases ***
+
+Copyright © 2016, 2017, 2018, 2019
+	mirabilos <t.glaser@tarent.de>
+Copyright © 2015, 2017, 2019
+	mirabilos <mirabilos@evolvis.org>
+
+Provided that these terms and disclaimer and all copyright notices
+are retained or reproduced in an accompanying document, permission
+is granted to deal in this work without restriction, including un‐
+limited rights to use, publicly perform, distribute, sell, modify,
+merge, give away, or sublicence.
+
+This work is provided “AS IS” and WITHOUT WARRANTY of any kind, to
+the utmost extent permitted by applicable law, neither express nor
+implied; without malicious intent or gross negligence. In no event
+may a licensor, author or contributor be held liable for indirect,
+direct, other damage, loss, or other issues arising in any way out
+of dealing in the work, even if advised of the possibility of such
+damage or existence of a defect, except proven that it results out
+of said person’s immediate fault when using the work as intended.
