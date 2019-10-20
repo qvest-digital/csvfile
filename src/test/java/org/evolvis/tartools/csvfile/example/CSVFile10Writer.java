@@ -77,7 +77,8 @@ import java.io.IOException;
 import java.io.Writer;
 
 /**
- * {@link CSVFileWriter} that handles fields whose content contains the quote char properly.
+ * {@link CSVFileWriter} that handles fields whose content contains the quote char
+ * in the same broken way CSVFile 1.0 did.
  *
  * @author mirabilos (t.glaser@tarent.de)
  */
@@ -111,6 +112,8 @@ public class CSVFile10Writer extends CSVFileWriter {
 
     /**
      * Prepares a field for output by stringifying the passed object and quoting it.
+     *
+     * ⚠ WARNING ⚠ handles field content containing separators wrong!
      *
      * @param field to prepare
      * @return quoted string
