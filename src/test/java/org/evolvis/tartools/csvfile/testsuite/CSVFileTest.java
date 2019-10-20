@@ -22,6 +22,7 @@ package org.evolvis.tartools.csvfile.testsuite;
 
 import org.evolvis.tartools.csvfile.CSVFileReader;
 import org.evolvis.tartools.csvfile.CSVFileWriter;
+import org.evolvis.tartools.csvfile.SSVFileReader;
 import org.evolvis.tartools.csvfile.SSVFileWriter;
 import org.evolvis.tartools.csvfile.example.CSVFile10Writer;
 import org.evolvis.tartools.csvfile.example.CSVFileNilReader;
@@ -300,8 +301,7 @@ public class CSVFileTest {
         fw = new SSVFileWriter(OUTF(12));
         cpy(fr, fw, OUTF(12), CMPF(12));
 
-//        fr = new SSVFileReader(CMPF(12));
-        fr = new CSVFileReader(new FileReader(FILE(1)));
+        fr = new SSVFileReader(CMPF(12));
         fw = new CSVFileWriter(OUTF(16));
         cpy(fr, fw, OUTF(16), CMPF(16));
 
