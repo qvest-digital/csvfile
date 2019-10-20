@@ -20,9 +20,11 @@ package org.evolvis.tartools.csvfile.testsuite;
  * of said person’s immediate fault when using the work as intended.
  */
 
+import org.evolvis.tartools.csvfile.SSVFileReader;
 import org.evolvis.tartools.csvfile.SSVFileWriter;
 import org.junit.Test;
 
+import java.io.StringReader;
 import java.io.StringWriter;
 
 import static org.evolvis.tartools.csvfile.CSVFile.CR;
@@ -48,30 +50,58 @@ public class SSVFileTest {
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void testNegSetFS() {
+    public void testNegWSetFS() {
         final StringWriter sw = new StringWriter();
         final SSVFileWriter w = new SSVFileWriter(sw);
         w.setFieldSeparator(';');
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void testNegSetQC() {
+    public void testNegWSetQC() {
         final StringWriter sw = new StringWriter();
         final SSVFileWriter w = new SSVFileWriter(sw);
         w.setTextQualifier('"');
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void testNegGetQC() {
+    public void testNegWGetQC() {
         final StringWriter sw = new StringWriter();
         final SSVFileWriter w = new SSVFileWriter(sw);
         System.err.println(String.format("testNegGetQC: %02X", (int) w.getTextQualifier()));
     }
 
     @Test
-    public void testPosGetFS() {
+    public void testPosWGetFS() {
         final StringWriter sw = new StringWriter();
         final SSVFileWriter w = new SSVFileWriter(sw);
+        assertEquals(0x1C, w.getFieldSeparator());
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void testNegRSetFS() {
+        final StringReader sr = new StringReader("");
+        final SSVFileReader w = new SSVFileReader(sr);
+        w.setFieldSeparator(';');
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void testNegRSetQC() {
+        final StringReader sr = new StringReader("");
+        final SSVFileReader w = new SSVFileReader(sr);
+        w.setTextQualifier('"');
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void testNegRGetQC() {
+        final StringReader sr = new StringReader("");
+        final SSVFileReader w = new SSVFileReader(sr);
+        System.err.println(String.format("testNegGetQC: %02X", (int) w.getTextQualifier()));
+    }
+
+    @Test
+    public void testPosRGetFS() {
+        final StringReader sr = new StringReader("");
+        final SSVFileReader w = new SSVFileReader(sr);
         assertEquals(0x1C, w.getFieldSeparator());
     }
 }
