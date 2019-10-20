@@ -23,6 +23,7 @@ package org.evolvis.tartools.csvfile.testsuite;
 import org.evolvis.tartools.csvfile.CSVFileReader;
 import org.evolvis.tartools.csvfile.CSVFileWriter;
 import org.evolvis.tartools.csvfile.SSVFileWriter;
+import org.evolvis.tartools.csvfile.example.CSVFile10Writer;
 import org.evolvis.tartools.csvfile.example.CSVFileNilReader;
 import org.evolvis.tartools.csvfile.example.CSVFileProperWriter;
 import org.junit.Test;
@@ -34,6 +35,8 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.io.Writer;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -166,7 +169,7 @@ public class CSVFileTest {
         fr.close();
         fw.close();
         // double quotes are trimmed on output if not mandatory
-        fc = fc.replace("\"\"", "\01").replace("\"", "").replace('\01', '"');
+        fc = fc.replaceAll("(?m)(?<=(?:^|,))\"([^\"]*)\"(?=(?:$|,))", "$1");
         // trailing commas are ignored
         fc = fc.replaceAll("(?m),$", "");
         // ensure the result matches
@@ -221,7 +224,7 @@ public class CSVFileTest {
         // only once‽
         fr = new CSVFileReader(FILE(8),
           StandardCharsets.ISO_8859_1.name(), '\t', '!');
-        fw = new CSVFileWriter(OUTF(8), '\t', '!');
+        fw = new CSVFile10Writer(OUTF(8), '\t', '!');
         assertNotNull(fr);
         assertNotNull(fw);
         assertEquals(fw.getFieldSeparator(), fr.getFieldSeparator());
@@ -307,9 +310,19 @@ public class CSVFileTest {
     }
 
     @Test
-    public void testPosCSVFromList() throws IOException {
+    public void testPosCSVFromList()
+      throws IllegalAccessException, InvocationTargetException, InstantiationException,
+      IOException, NoSuchMethodException {
+        doCSVFromList(CSVFileWriter.class, 81);
+        doCSVFromList(CSVFile10Writer.class, 80);
+    }
+
+    private void doCSVFromList(final Class<? extends CSVFileWriter> clazz, final int cm)
+      throws IllegalAccessException, InvocationTargetException, InstantiationException,
+      IOException, NoSuchMethodException {
         final StringWriter sw = new StringWriter();
-        final CSVFileWriter w = new CSVFileWriter(sw, ';', '"');
+        final CSVFileWriter w = clazz.getConstructor(Writer.class, char.class,
+          char.class).newInstance((Writer) sw, ';', '"');
         final List<String> l = new ArrayList<>();
         l.add(null);
         l.add("a;b");
@@ -318,10 +331,10 @@ public class CSVFileTest {
         l.add("\"g");
         w.writeFields(l);
         l.clear();
-        l.add("g\"h"); // mishandled except by CSVFileProperWriter
+        l.add("g\"h"); // mishandled by CSVFile10Writer
         w.writeFields(l);
         w.close();
-        cmps(CMPF(80), sw.toString());
+        cmps(CMPF(cm), sw.toString());
     }
 
     @Test

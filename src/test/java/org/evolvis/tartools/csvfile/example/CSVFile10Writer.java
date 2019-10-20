@@ -1,4 +1,4 @@
-package org.evolvis.tartools.csvfile;
+package org.evolvis.tartools.csvfile.example;
 
 /*-
  * The CSVFile tools are a collection of classes to deal with CSV files
@@ -70,51 +70,18 @@ package org.evolvis.tartools.csvfile;
  * copyright notice and book citation attached.”</cite> I have done so.
  */
 
-import java.io.BufferedWriter;
+import org.evolvis.tartools.csvfile.CSVFileWriter;
+
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.Writer;
-import java.util.List;
 
 /**
- * CSVFileWriter is a class derived from {@link CSVFile}
- * used to format some fields into a new CSV file. As of
- * CSVFile 2.0, this will handle escaping fields whose
- * contents contain the field separator, text qualifier,
- * carriage return and/or line feed properly.
+ * {@link CSVFileWriter} that handles fields whose content contains the quote char properly.
  *
- * @author Fabrizio Fazzino
+ * @author mirabilos (t.glaser@tarent.de)
  */
-public class CSVFileWriter extends CSVFile {
-    /**
-     * The print writer linked to the CSV file to be written.
-     */
-    protected final PrintWriter out;
-
-    /**
-     * CSVFileWriter constructor just need the name of the CSV file that will be written.
-     *
-     * @param outputFileName The name of the CSV file to be opened for writing
-     * @throws IOException if an error occurs while creating the file
-     */
-    public CSVFileWriter(final String outputFileName)
-      throws IOException {
-        this(outputFileName, DEFAULT_FIELD_SEPARATOR);
-    }
-
-    /**
-     * CSVFileWriter constructor with a given field separator.
-     *
-     * @param outputFileName The name of the CSV file to be opened for writing
-     * @param sep            The field separator to be used; overwrites the default one
-     * @throws IOException if an error occurs while creating the file
-     */
-    public CSVFileWriter(final String outputFileName, final char sep)
-      throws IOException {
-        this(outputFileName, sep, DEFAULT_TEXT_QUALIFIER);
-    }
-
+public class CSVFile10Writer extends CSVFileWriter {
     /**
      * CSVFileWriter constructor with given field separator and text qualifier.
      *
@@ -123,7 +90,7 @@ public class CSVFileWriter extends CSVFile {
      * @param qual           The text qualifier to be used; overwrites the default one
      * @throws IOException if an error occurs while creating the file
      */
-    public CSVFileWriter(final String outputFileName, final char sep, final char qual)
+    public CSVFile10Writer(final String outputFileName, final char sep, final char qual)
       throws IOException {
         this(new FileWriter(outputFileName), sep, qual);
     }
@@ -135,40 +102,11 @@ public class CSVFileWriter extends CSVFile {
      * @param sep    The field separator to be used; overwrites the default one
      * @param qual   The text qualifier to be used; overwrites the default one
      */
-    public CSVFileWriter(final Writer writer, final char sep, final char qual) {
-        super(sep, qual);
-        out = new PrintWriter(new BufferedWriter(writer));
-    }
-
-    /**
-     * Closes the output CSV file.
-     */
-    public void close() {
+    @SuppressWarnings("WeakerAccess")
+    public CSVFile10Writer(final Writer writer, final char sep, final char qual) {
+        super(writer, sep, qual);
+        // just so IntelliJ does not think access could be package-private
         out.flush();
-        out.close();
-    }
-
-    /**
-     * Joins the fields and writes them as a new line to the CSV file.
-     *
-     * @param fields The list of strings containing the fields
-     */
-    public void writeFields(final List<?> fields) {
-        int n = fields.size();
-        for (int i = 0; i < n; i++) {
-            out.print(prepareField(fields.get(i)));
-            if (i < (n - 1)) {
-                out.print(fieldSeparator);
-            }
-        }
-        emitRowSeparator();
-    }
-
-    /**
-     * Called after a list of fields has been output.
-     */
-    protected void emitRowSeparator() {
-        out.println();
     }
 
     /**
@@ -177,12 +115,13 @@ public class CSVFileWriter extends CSVFile {
      * @param field to prepare
      * @return quoted string
      */
+    @Override
     protected String prepareField(final Object field) {
         final String fieldString = field == null ? "" : field.toString();
         if (fieldString.indexOf(fieldSeparator) >= 0 ||
           fieldString.indexOf('\n') >= 0 ||
           fieldString.indexOf('\r') >= 0 ||
-          fieldString.indexOf(textQualifier) >= 0) {
+          fieldString.indexOf(textQualifier) == 0) {
             return textQualifier + fieldString.replaceAll(String.valueOf(textQualifier),
               new String(new char[] { textQualifier, textQualifier })) + textQualifier;
         }
