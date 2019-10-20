@@ -2,7 +2,7 @@ package org.evolvis.tartools.csvfile.example;
 
 /*-
  * Copyright © 2019
- *	mirabilos <t.glaser@tarent.de>
+ *      mirabilos <t.glaser@tarent.de>
  *
  * Provided that these terms and disclaimer and all copyright notices
  * are retained or reproduced in an accompanying document, permission
@@ -27,8 +27,7 @@ import java.io.Reader;
 
 /**
  * Test helper class for subclassing methods.
- * Feel free to reuse the concepts in your own projects;
- * see also {@link CSVFileProperWriter}.
+ * Feel free to reuse the concepts in your own projects.
  *
  * @author mirabilos (t.glaser@tarent.de)
  */

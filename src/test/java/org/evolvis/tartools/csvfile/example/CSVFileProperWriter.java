@@ -76,8 +76,6 @@ import java.io.IOException;
 
 /**
  * {@link CSVFileWriter} that handles fields whose content contains the quote char properly.
- * Feel free to reuse the same concept or even prepareField() code in your project, as long
- * as said project uses this CSVFile library.
  *
  * @author mirabilos (t.glaser@tarent.de)
  */

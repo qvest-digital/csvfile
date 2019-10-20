@@ -178,7 +178,7 @@ public class CSVFileWriter extends CSVFile {
      * @return quoted string
      */
     protected String prepareField(final Object field) {
-        String fieldString = field == null ? "" : field.toString();
+        final String fieldString = field == null ? "" : field.toString();
         if (fieldString.indexOf(fieldSeparator) >= 0 ||
           fieldString.indexOf('\n') >= 0 ||
           fieldString.indexOf('\r') >= 0 ||

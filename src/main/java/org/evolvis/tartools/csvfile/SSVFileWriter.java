@@ -2,7 +2,7 @@ package org.evolvis.tartools.csvfile;
 
 /*-
  * Copyright © 2015, 2017, 2019
- *	mirabilos <mirabilos@evolvis.org>
+ *      mirabilos <mirabilos@evolvis.org>
  *
  * Provided that these terms and disclaimer and all copyright notices
  * are retained or reproduced in an accompanying document, permission
