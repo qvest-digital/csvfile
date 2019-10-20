@@ -25,7 +25,6 @@ import org.evolvis.tartools.csvfile.CSVFileWriter;
 import org.evolvis.tartools.csvfile.SSVFileWriter;
 import org.evolvis.tartools.csvfile.example.CSVFile10Writer;
 import org.evolvis.tartools.csvfile.example.CSVFileNilReader;
-import org.evolvis.tartools.csvfile.example.CSVFileProperWriter;
 import org.junit.Test;
 
 import java.io.BufferedReader;
@@ -238,7 +237,7 @@ public class CSVFileTest {
         // do that properly; you’ll see!
         fr = new CSVFileReader(FILE(8),
           StandardCharsets.ISO_8859_1.name(), '\t', '!');
-        fw = new CSVFileProperWriter(OUTF(9), '\t', '!');
+        fw = new CSVFileWriter(OUTF(9), '\t', '!');
         assertNotNull(fr);
         assertNotNull(fw);
         assertEquals(fw.getFieldSeparator(), fr.getFieldSeparator());
@@ -255,7 +254,7 @@ public class CSVFileTest {
         cpy(fr, fw, OUTF(10), CMPF(10));
 
         fr = new CSVFileReader(FILE(8), '\t', '!');
-        fw = new CSVFileProperWriter(OUTF(11), '!', '\t');
+        fw = new CSVFileWriter(OUTF(11), '!', '\t');
         assertNotNull(fr);
         assertNotNull(fw);
         assertEquals(fw.getFieldSeparator(), fr.getTextQualifier());
@@ -268,7 +267,7 @@ public class CSVFileTest {
         cpy(fr, fw, OUTF(10), CMPF(10));
 
         fr = new CSVFileReader(new FileReader(FILE(8)), '\t', '!');
-        fw = new CSVFileProperWriter(OUTF(11), '!', '\t');
+        fw = new CSVFileWriter(OUTF(11), '!', '\t');
         cpy(fr, fw, OUTF(11), CMPF(11));
 
         // corner case
