@@ -300,6 +300,11 @@ public class CSVFileTest {
         fw = new SSVFileWriter(OUTF(12));
         cpy(fr, fw, OUTF(12), CMPF(12));
 
+//        fr = new SSVFileReader(CMPF(12));
+        fr = new CSVFileReader(new FileReader(FILE(1)));
+        fw = new CSVFileWriter(OUTF(16));
+        cpy(fr, fw, OUTF(16), CMPF(16));
+
         // quoted strings spanning input lines
         fr = new CSVFileReader(new FileReader(FILE(14)));
         fw = new SSVFileWriter(OUTF(14));
