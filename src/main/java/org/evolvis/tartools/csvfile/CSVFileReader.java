@@ -290,7 +290,7 @@ public class CSVFileReader extends CSVFile {
         }
 
         if (line.length() == 0) {
-            fields.add(line);
+            addField(fields, line);
             return fields;
         }
 
@@ -302,7 +302,7 @@ public class CSVFileReader extends CSVFile {
             } else {
                 i = handlePlainField(sb, i);
             }
-            fields.add(sb.toString());
+            addField(fields, sb.toString());
             i++;
         } while (i < line.length());
 
@@ -320,6 +320,18 @@ public class CSVFileReader extends CSVFile {
             return false;
         }
         return line.charAt(i) == textQualifier;
+    }
+
+    /**
+     * Adds extracted field to list of fields.
+     *
+     * Child classes can override to add post-processing.
+     *
+     * @param fields list of fields to add field to
+     * @param field  raw extracted String
+     */
+    protected void addField(final List<String> fields, final String field) {
+        fields.add(field);
     }
 
     /**
