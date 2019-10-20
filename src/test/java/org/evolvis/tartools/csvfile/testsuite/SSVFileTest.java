@@ -41,7 +41,7 @@ public class SSVFileTest {
         assertEquals(1, CR.length());
         assertEquals(0x0D, CR.charAt(0));
         assertEquals(1, LF.length());
-        assertEquals(0x0D, LF.charAt(0));
+        assertEquals(0x0A, LF.charAt(0));
         assertEquals(2, CRLF.length());
         assertEquals(0x0D, CRLF.charAt(0));
         assertEquals(0x0A, CRLF.charAt(1));
