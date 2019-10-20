@@ -30,6 +30,7 @@ import org.junit.Test;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
@@ -217,13 +218,11 @@ public class CSVFileTest {
         fw = new CSVFileWriter(OUTF(7), '\t', '!');
         cpy(fr, fw, OUTF(7), CMPF(7));
 
-        // methinks this breaks the spec; the second output field
-        // should be "\tÃ¼\t\tÃ¼\t" but really is "Ã¼\tÃ¼" having
-        // the quote character occur in the middle of a field and
-        // only once‽
+        // the old 1.0 CSVFileWriter breaks the CSV spec if the quote character
+        // occurs (only once makes it worse) in the middle of a field, see below
         fr = new CSVFileReader(FILE(8),
           StandardCharsets.ISO_8859_1.name(), '\t', '!');
-        fw = new CSVFile10Writer(OUTF(8), '\t', '!');
+        fw = new CSVFile10Writer(new FileWriter(OUTF(8)), '\t', '!');
         assertNotNull(fr);
         assertNotNull(fw);
         assertEquals(fw.getFieldSeparator(), fr.getFieldSeparator());
@@ -234,7 +233,7 @@ public class CSVFileTest {
         assertEquals(fw.getTextQualifier(), fr.getFieldSeparator());
         cpy(fr, fw, OUTF(8), CMPF(8));
 
-        // do that properly; you’ll see!
+        // the new 2.0 CSVFileWriter handles quoting and escaping right
         fr = new CSVFileReader(FILE(8),
           StandardCharsets.ISO_8859_1.name(), '\t', '!');
         fw = new CSVFileWriter(OUTF(9), '\t', '!');

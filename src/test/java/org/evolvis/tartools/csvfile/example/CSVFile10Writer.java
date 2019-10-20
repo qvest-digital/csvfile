@@ -72,8 +72,6 @@ package org.evolvis.tartools.csvfile.example;
 
 import org.evolvis.tartools.csvfile.CSVFileWriter;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.Writer;
 
 /**
@@ -86,24 +84,10 @@ public class CSVFile10Writer extends CSVFileWriter {
     /**
      * CSVFileWriter constructor with given field separator and text qualifier.
      *
-     * @param outputFileName The name of the CSV file to be opened for writing
-     * @param sep            The field separator to be used; overwrites the default one
-     * @param qual           The text qualifier to be used; overwrites the default one
-     * @throws IOException if an error occurs while creating the file
-     */
-    public CSVFile10Writer(final String outputFileName, final char sep, final char qual)
-      throws IOException {
-        this(new FileWriter(outputFileName), sep, qual);
-    }
-
-    /**
-     * CSVFileWriter constructor with given field separator and text qualifier.
-     *
      * @param writer The Writer to be opened for writing
      * @param sep    The field separator to be used; overwrites the default one
      * @param qual   The text qualifier to be used; overwrites the default one
      */
-    @SuppressWarnings("WeakerAccess")
     public CSVFile10Writer(final Writer writer, final char sep, final char qual) {
         super(writer, sep, qual);
         // just so IntelliJ does not think access could be package-private
