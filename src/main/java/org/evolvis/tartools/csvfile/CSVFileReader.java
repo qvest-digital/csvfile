@@ -117,7 +117,7 @@ public class CSVFileReader extends CSVFile {
     /**
      * CSVFileReader constructor just needing a reader for the CSV data that will be read.
      *
-     * @param reader The Reader for reading CSV data
+     * @param reader The {@link Reader} for reading CSV data
      */
     public CSVFileReader(final Reader reader) {
         this(reader, DEFAULT_FIELD_SEPARATOR);
@@ -141,7 +141,7 @@ public class CSVFileReader extends CSVFile {
      * CSVFileReader constructor just needing an InputStream and encoding for the
      * CSV data that will be read.
      *
-     * @param stream      The InputStream for reading CSV data
+     * @param stream      The {@link InputStream} for reading CSV data
      * @param charsetName The name of a supported charset
      * @throws UnsupportedEncodingException if the named charset is not supported
      */
@@ -165,7 +165,7 @@ public class CSVFileReader extends CSVFile {
     /**
      * CSVFileReader constructor with a given field separator.
      *
-     * @param reader The Reader for reading CSV data
+     * @param reader The {@link Reader} for reading CSV data
      * @param sep    The field separator to be used; overwrites the default one
      */
     public CSVFileReader(final Reader reader, final char sep) {
@@ -189,7 +189,7 @@ public class CSVFileReader extends CSVFile {
     /**
      * CSVFileReader constructor with a given field separator.
      *
-     * @param stream      The stream for reading CSV data
+     * @param stream      The {@link InputStream} for reading CSV data
      * @param charsetName The name of a supported charset
      * @param sep         The field separator to be used; overwrites the default one
      * @throws UnsupportedEncodingException if the named charset is not supported
@@ -215,7 +215,7 @@ public class CSVFileReader extends CSVFile {
     /**
      * CSVFileReader constructor with given field separator and text qualifier.
      *
-     * @param reader The Reader for reading CSV data
+     * @param reader The {@link Reader} for reading CSV data
      * @param sep    The field separator to be used; overwrites the default one
      * @param qual   The text qualifier to be used; overwrites the default one
      */
@@ -243,7 +243,7 @@ public class CSVFileReader extends CSVFile {
     /**
      * CSVFileReader constructor with given field separator and text qualifier.
      *
-     * @param stream      The InputStream for reading CSV data
+     * @param stream      The {@link InputStream} for reading CSV data
      * @param charsetName The name of a supported charset
      * @param sep         The field separator to be used; overwrites the default one
      * @param qual        The text qualifier to be used; overwrites the default one

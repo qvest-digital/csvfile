@@ -63,7 +63,7 @@ public class SSVFileWriter extends CSVFileWriter {
      * SSVFileWriter constructor.
      *
      * @param writer The {@link Writer} to be opened for writing, which MUST be using an
-     *               ASCII-compatible charset (such as UTF-8) (we sadly cannot test that)
+     *               ASCII-compatible charset (such as UTF-8); we sadly cannot test that
      */
     public SSVFileWriter(final Writer writer) {
         super(writer, (char) 0x1C, (char) 0xFFFF);

@@ -79,10 +79,10 @@ import java.util.List;
 
 /**
  * CSVFileWriter is a class derived from {@link CSVFile}
- * used to format some fields into a new CSV file. As of
- * CSVFile 2.0, this will handle escaping fields whose
- * contents contain the field separator, text qualifier,
- * carriage return and/or line feed properly.
+ * used to format some fields into a new CSV file.
+ *
+ * As of CSVFile 2.0, this will handle escaping fields whose contents contain the
+ * field separator, text qualifier, carriage return and/or line feed properly.
  *
  * @author Fabrizio Fazzino
  */
@@ -131,7 +131,7 @@ public class CSVFileWriter extends CSVFile {
     /**
      * CSVFileWriter constructor with given field separator and text qualifier.
      *
-     * @param writer The Writer to be opened for writing
+     * @param writer The {@link Writer} to be opened for writing
      * @param sep    The field separator to be used; overwrites the default one
      * @param qual   The text qualifier to be used; overwrites the default one
      */
