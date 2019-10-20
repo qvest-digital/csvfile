@@ -43,9 +43,6 @@ import java.nio.charset.StandardCharsets;
  * at shellsnippets @ Evolvis</a>
  */
 public class SSVFileWriter extends CSVFileWriter {
-    static final String CR = "" + (char) 0x0D;
-    static final String CRLF = CR + (char) 0x0A;
-
     /**
      * SSVFileWriter constructor just needing the name of the SSV file that will be written.
      *

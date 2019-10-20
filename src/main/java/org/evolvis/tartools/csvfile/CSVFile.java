@@ -108,6 +108,11 @@ package org.evolvis.tartools.csvfile;
  * @author Fabrizio Fazzino
  */
 public abstract class CSVFile {
+    // helper string constants
+    public static final String CR = "" + (char) 0x0D;
+    public static final String LF = "" + (char) 0x0A;
+    public static final String CRLF = CR + LF;
+
     /**
      * The default char used as field separator.
      */

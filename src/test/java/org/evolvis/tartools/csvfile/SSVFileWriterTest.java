@@ -20,58 +20,20 @@ package org.evolvis.tartools.csvfile;
  * of said person’s immediate fault when using the work as intended.
  */
 
-import org.evolvis.tartools.csvfile.testsuite.CSVFileTest;
 import org.junit.Test;
 
 import java.io.StringWriter;
 
-import static org.evolvis.tartools.csvfile.SSVFileWriter.CR;
-import static org.evolvis.tartools.csvfile.SSVFileWriter.CRLF;
+import static org.evolvis.tartools.csvfile.CSVFile.CR;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Tests for {@link SSVFileWriter} that aren’t already in {@link CSVFileTest}
+ * Tests for {@link SSVFileWriter} that need protected access and can’t be in
+ * {@link org.evolvis.tartools.csvfile.testsuite.SSVFileTest}
  *
  * @author mirabilos (t.glaser@tarent.de)
  */
 public class SSVFileWriterTest {
-    @Test
-    public void testPosEncodedLineSeparators() {
-        assertEquals(1, CR.length());
-        assertEquals(0x0D, CR.charAt(0));
-        assertEquals(2, CRLF.length());
-        assertEquals(0x0D, CRLF.charAt(0));
-        assertEquals(0x0A, CRLF.charAt(1));
-    }
-
-    @Test(expected = UnsupportedOperationException.class)
-    public void testNegSetFS() {
-        final StringWriter sw = new StringWriter();
-        final SSVFileWriter w = new SSVFileWriter(sw);
-        w.setFieldSeparator(';');
-    }
-
-    @Test(expected = UnsupportedOperationException.class)
-    public void testNegSetQC() {
-        final StringWriter sw = new StringWriter();
-        final SSVFileWriter w = new SSVFileWriter(sw);
-        w.setTextQualifier('"');
-    }
-
-    @Test(expected = UnsupportedOperationException.class)
-    public void testNegGetQC() {
-        final StringWriter sw = new StringWriter();
-        final SSVFileWriter w = new SSVFileWriter(sw);
-        System.err.println(String.format("testNegGetQC: %02X", (int) w.getTextQualifier()));
-    }
-
-    @Test
-    public void testPosGetFS() {
-        final StringWriter sw = new StringWriter();
-        final SSVFileWriter w = new SSVFileWriter(sw);
-        assertEquals(0x1C, w.getFieldSeparator());
-    }
-
     @Test
     public void testPosPrepSP() {
         final StringWriter sw = new StringWriter();
