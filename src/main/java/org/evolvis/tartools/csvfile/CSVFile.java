@@ -119,7 +119,7 @@ public abstract class CSVFile {
     protected static final char DEFAULT_FIELD_SEPARATOR = ',';
 
     /**
-     * The default char used as text qualifier
+     * The default char used as text qualifier.
      */
     protected static final char DEFAULT_TEXT_QUALIFIER = '"';
 
@@ -146,7 +146,7 @@ public abstract class CSVFile {
     }
 
     /**
-     * Set the current field separator.
+     * Sets the current field separator.
      *
      * @param sep The new field separator to be used; overwrites the old one
      */
@@ -155,7 +155,7 @@ public abstract class CSVFile {
     }
 
     /**
-     * Set the current text qualifier.
+     * Sets the current text qualifier.
      *
      * @param qual The new text qualifier to be used; overwrites the old one
      */
@@ -164,7 +164,7 @@ public abstract class CSVFile {
     }
 
     /**
-     * Get the current field separator.
+     * Gets the current field separator.
      *
      * @return The char containing the current field separator
      */
@@ -173,7 +173,7 @@ public abstract class CSVFile {
     }
 
     /**
-     * Get the current text qualifier.
+     * Gets the current text qualifier.
      *
      * @return The char containing the current text qualifier
      */
