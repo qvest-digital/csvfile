@@ -90,8 +90,6 @@ public class CSVFile10Writer extends CSVFileWriter {
      */
     public CSVFile10Writer(final Writer writer, final char sep, final char qual) {
         super(writer, sep, qual);
-        // just so IntelliJ does not think access could be package-private
-        out.flush();
     }
 
     /**
