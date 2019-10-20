@@ -20,8 +20,11 @@ package org.evolvis.tartools.csvfile;
  * of said person’s immediate fault when using the work as intended.
  */
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 
 /**
  * {@link CSVFileWriter} subclass to write the SSV format:
@@ -44,19 +47,23 @@ public class SSVFileWriter extends CSVFileWriter {
     static final String CRLF = CR + (char) 0x0A;
 
     /**
-     * SSVFileWriter constructor just need the name of the SSV file that will be written.
+     * SSVFileWriter constructor just needing the name of the SSV file that will be written.
+     *
+     * The SSV file will be written in UTF-8 encoding.
      *
      * @param outputFileName The name of the SSV file to be opened for writing
      * @throws IOException if an error occurs while creating the file
      */
     public SSVFileWriter(final String outputFileName) throws IOException {
-        super(outputFileName, (char) 0x1C, (char) 0);
+        super(new OutputStreamWriter(new FileOutputStream(outputFileName),
+          StandardCharsets.UTF_8), (char) 0x1C, (char) 0);
     }
 
     /**
      * SSVFileWriter constructor.
      *
-     * @param writer The {@link Writer} to be opened for writing
+     * @param writer The {@link Writer} to be opened for writing, which MUST be using an
+     *               ASCII-compatible charset (such as UTF-8) (we sadly cannot test that)
      */
     public SSVFileWriter(final Writer writer) {
         super(writer, (char) 0x1C, (char) 0xFFFF);

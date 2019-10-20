@@ -93,7 +93,7 @@ public class CSVFileWriter extends CSVFile {
     protected final PrintWriter out;
 
     /**
-     * CSVFileWriter constructor just need the name of the CSV file that will be written.
+     * CSVFileWriter constructor just needing the name of the CSV file that will be written.
      *
      * @param outputFileName The name of the CSV file to be opened for writing
      * @throws IOException if an error occurs while creating the file
