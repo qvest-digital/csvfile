@@ -63,6 +63,9 @@ public class CSVFileNilReader extends CSVFileReader {
      */
     @Override
     protected int handlePlainField(final StringBuilder sb, final int i) {
+        /* just for IntelliJ */
+        assert (line != null);
+
         assert (textQualifier == DEFAULT_TEXT_QUALIFIER);
         sb.append('"');
         final int rv = super.handlePlainField(sb, i);

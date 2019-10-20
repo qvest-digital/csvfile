@@ -101,7 +101,7 @@ public class CSVFileReader extends CSVFile {
     /**
      * The currently being read input line.
      */
-    private String line = null;
+    protected String line = null;
 
     /**
      * CSVFileReader constructor just needing the name of the existing CSV file to read.
@@ -297,8 +297,7 @@ public class CSVFileReader extends CSVFile {
         int i = 0;
         do {
             sb.setLength(0);
-            // Hi Sonar! Forth condition can’t be tested!
-            if (i < line.length() && line.charAt(i) == textQualifier) {
+            if (fieldIsQuoted(i)) {
                 i = handleQuotedField(sb, /* skip quote */ ++i);
             } else {
                 i = handlePlainField(sb, i);
@@ -308,6 +307,19 @@ public class CSVFileReader extends CSVFile {
         } while (i < line.length());
 
         return fields;
+    }
+
+    /**
+     * Checks whether the current input line field is quoted.
+     *
+     * @param i Offset into the input line denoting start of field
+     * @return false if the field is not quoted or EOL is reached
+     */
+    protected boolean fieldIsQuoted(final int i) {
+        if (i >= line.length()) {
+            return false;
+        }
+        return line.charAt(i) == textQualifier;
     }
 
     /**

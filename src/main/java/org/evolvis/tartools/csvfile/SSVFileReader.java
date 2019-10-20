@@ -104,4 +104,15 @@ public class SSVFileReader extends CSVFileReader {
     public char getTextQualifier() {
         throw new UnsupportedOperationException("SSV does not have a quote character");
     }
+
+    /**
+     * SSV does not have any quoted fields.
+     *
+     * @param i Offset into the input line denoting start of field
+     * @return false
+     */
+    @Override
+    protected boolean fieldIsQuoted(final int i) {
+        return false;
+    }
 }
