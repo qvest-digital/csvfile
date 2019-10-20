@@ -22,10 +22,12 @@ package org.evolvis.tartools.csvfile;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 /**
  * {@link CSVFileReader} subclass to read the SSV format:
@@ -106,6 +108,25 @@ public class SSVFileReader extends CSVFileReader {
     }
 
     /**
+     * Splits the next line of the input SSV file into fields.
+     *
+     * @return List of String containing each field from the next line of the file
+     * @throws IOException if an error occurs while reading the new line from the file
+     */
+    public List<String> readFields() throws IOException {
+        //XXX not yet right
+        String line = in.readLine();
+
+        /* handle POSIX shell terminating line at NUL */
+        if (line.indexOf(0) != -1) {
+            line = line.substring(0, line.indexOf(0));
+        }
+
+        // assert: line does not contain NUL or LF
+        return readFields(line);
+    }
+
+    /**
      * SSV does not have any quoted fields.
      *
      * @param i Offset into the input line denoting start of field
@@ -114,5 +135,17 @@ public class SSVFileReader extends CSVFileReader {
     @Override
     protected boolean fieldIsQuoted(final int i) {
         return false;
+    }
+
+    /**
+     * Adds extracted field to list of fields, handling SSV postprocessing.
+     *
+     * Converts embedded newline marker to platform newline character.
+     *
+     * @param fields list of fields to add field to
+     * @param field  raw extracted String
+     */
+    protected void addField(final List<String> fields, final String field) {
+        fields.add(field.replace(CR, System.lineSeparator()));
     }
 }

@@ -96,7 +96,7 @@ public class CSVFileReader extends CSVFile {
     /**
      * The buffered reader linked to the CSV file to be read.
      */
-    private final BufferedReader in;
+    protected final BufferedReader in;
 
     /**
      * The currently being read input line.
