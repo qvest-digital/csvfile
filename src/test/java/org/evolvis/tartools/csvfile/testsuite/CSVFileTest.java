@@ -43,6 +43,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.evolvis.tartools.csvfile.CSVFile.CR;
+import static org.evolvis.tartools.csvfile.CSVFile.CRLF;
+import static org.evolvis.tartools.csvfile.CSVFile.LF;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -324,8 +327,8 @@ public class CSVFileTest {
         final List<String> l = new ArrayList<>();
         l.add(null);
         l.add("a;b");
-        l.add("c" + (char) 0x0A + "d");
-        l.add("e" + (char) 0x0D + "f");
+        l.add("c" + LF + "d");
+        l.add("e" + CR + "f");
         l.add("\"g");
         w.writeFields(l);
         l.clear();
@@ -340,7 +343,7 @@ public class CSVFileTest {
         final StringWriter sw = new StringWriter();
         final SSVFileWriter w = new SSVFileWriter(sw);
         final List<String> l = new ArrayList<>();
-        l.add("meow\"miau mio" + (char) 0x0D + (char) 0x0A + "mraw,nyan;mewl");
+        l.add("meow\"miau mio" + CRLF + "mraw,nyan;mewl");
         l.add("🐈");
         w.writeFields(l);
         l.clear();
