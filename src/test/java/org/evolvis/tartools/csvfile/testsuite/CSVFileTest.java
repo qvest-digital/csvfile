@@ -319,6 +319,11 @@ public class CSVFileTest {
         fr = new CSVFileReader(new FileReader(FILE(15)));
         fw = new SSVFileWriter(OUTF(15));
         cpy(fr, fw, OUTF(15), CMPF(15));
+
+        final SSVFileReader nr = new SSVFileReader(CMPF(90));
+        fw = new CSVFileWriter(OUTF(91));
+        nr.useUnixNewline();
+        cpy(nr, fw, OUTF(91), CMPF(91));
     }
 
     @Test

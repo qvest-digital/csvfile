@@ -47,6 +47,8 @@ import java.util.List;
  * at shellsnippets @ Evolvis</a>
  */
 public class SSVFileReader extends CSVFileReader {
+    private String decodeNewline = System.lineSeparator();
+
     /**
      * SSVFileReader constructor just needing the name of the existing SSV file to read.
      *
@@ -196,6 +198,14 @@ public class SSVFileReader extends CSVFileReader {
      * @param field  raw extracted String
      */
     protected void addField(final List<String> fields, final String field) {
-        fields.add(field.replace(CR, System.lineSeparator()));
+        fields.add(field.replace(CR, decodeNewline));
+    }
+
+    /**
+     * Switches the reader to use Unix (LF only) instead of the native
+     * underlying system’s newline on decoding embedded newlines.
+     */
+    public void useUnixNewline() {
+        decodeNewline = LF;
     }
 }
