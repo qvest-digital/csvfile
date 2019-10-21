@@ -60,6 +60,7 @@ public class CSVFileTest {
     private static final String CONT_02 = "\"\",,a,\"b\"";
     private static final byte[] CONT_03 = { 'm', (byte) 0xE4, 'h' };
     private static final byte[] CONT_05 = { '|', 'a', ';', 'b', '|', ';', (byte) 0xFC };
+    private static final byte[] CONT_06 = { '|', 'a', ';', 'b', '|', ';', (byte) 0xFC, ';' };
 
     private static String FILE(final int nr) {
         return String.format("src/test/resources/%02d.in", nr);
@@ -213,6 +214,11 @@ public class CSVFileTest {
         cpy(fr, fw, OUTF(5), CMPF(5));
 
         fr = new CSVFileReader(new ByteArrayInputStream(CONT_05),
+          StandardCharsets.ISO_8859_1.name(), ';', '|');
+        fw = new CSVFileWriter(OUTF(6), '\t', '"');
+        cpy(fr, fw, OUTF(6), CMPF(6));
+
+        fr = new CSVFileReader(new ByteArrayInputStream(CONT_06),
           StandardCharsets.ISO_8859_1.name(), ';', '|');
         fw = new CSVFileWriter(OUTF(6), '\t', '"');
         cpy(fr, fw, OUTF(6), CMPF(6));
