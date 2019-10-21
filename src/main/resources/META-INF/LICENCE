@@ -70,7 +70,7 @@ http://www.informit.com/store/practice-of-programming-9780201615869
 <cite>“You may use this code for any purpose, as long as you leave the
 copyright notice and book citation attached.”</cite> I have done so.
 
-*** SSVFileWriter, the build scripts and test cases ***
+*** SSVFileReader, SSVFileWriter, the build scripts and test cases ***
 
 Copyright © 2016, 2017, 2018, 2019
 	mirabilos <t.glaser@tarent.de>
