@@ -20,6 +20,7 @@ package org.evolvis.tartools.csvfile;
  * of said person’s immediate fault when using the work as intended.
  */
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -107,6 +108,51 @@ public class SSVFileReader extends CSVFileReader {
         throw new UnsupportedOperationException("SSV does not have a quote character");
     }
 
+    static final int BUFSIZ = 4096;
+    private static final char[] BUF = new char[BUFSIZ];
+
+    /**
+     * Something like {@link BufferedReader#readLine()} except stops at LF only.
+     *
+     * @return String next line or null if EOF
+     */
+    String inReadLine() throws IOException {
+        boolean found = false;
+        StringBuilder sb = null;
+
+        while (!found) {
+            in.mark(BUFSIZ + 2);
+            int nch = in.read(BUF, 0, BUFSIZ);
+            if (sb == null) {
+                // nothing read yet
+                if (nch == -1) {
+                    // EOF reached
+                    return null;
+                }
+                sb = new StringBuilder();
+            } else if (nch == -1) {
+                // EOF reached but something was read, assume EOL at EOF
+                break;
+            }
+            for (int i = 0; i < nch; i++) {
+                if (BUF[i] == (char) 0x0A) {
+                    sb.append(BUF, 0, i++);
+                    in.reset();
+                    while (i != 0) {
+                        i -= in.skip(i);
+                    }
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                sb.append(BUF, 0, nch);
+            }
+        }
+
+        return sb.toString();
+    }
+
     /**
      * Splits the next line of the input SSV file into fields.
      *
@@ -114,8 +160,11 @@ public class SSVFileReader extends CSVFileReader {
      * @throws IOException if an error occurs while reading the new line from the file
      */
     public List<String> readFields() throws IOException {
-        //XXX not yet right
-        String line = in.readLine();
+        String line = inReadLine();
+
+        if (line == null) {
+            return null;
+        }
 
         /* handle POSIX shell terminating line at NUL */
         if (line.indexOf(0) != -1) {

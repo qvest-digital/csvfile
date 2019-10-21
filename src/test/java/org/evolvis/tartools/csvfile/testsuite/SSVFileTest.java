@@ -24,13 +24,19 @@ import org.evolvis.tartools.csvfile.SSVFileReader;
 import org.evolvis.tartools.csvfile.SSVFileWriter;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.List;
 
 import static org.evolvis.tartools.csvfile.CSVFile.CR;
 import static org.evolvis.tartools.csvfile.CSVFile.CRLF;
 import static org.evolvis.tartools.csvfile.CSVFile.LF;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Tests for {@link SSVFileWriter} that aren’t already in {@link CSVFileTest}
@@ -38,6 +44,10 @@ import static org.junit.Assert.assertEquals;
  * @author mirabilos (t.glaser@tarent.de)
  */
 public class SSVFileTest {
+    private static final byte[] T01 = { 'a', (byte) 0x0D, 'b', (byte) 0x1C, 'c', (byte) 0x0D, (byte) 0x0A };
+    private static final byte[] T02 = { 'a', (byte) 0x00, 'b', (byte) 0x1C, 'c', (byte) 0x0D, (byte) 0x0A };
+    private static final byte[] T03 = { 'a', (byte) 0x00, 'b', (byte) 0x0A, 'c', (byte) 0x1C, 'd', (byte) 0x0A };
+
     @Test
     public void testPosEncodedLineSeparators() {
         assertEquals(1, CR.length());
@@ -103,5 +113,69 @@ public class SSVFileTest {
         final StringReader sr = new StringReader("");
         final SSVFileReader w = new SSVFileReader(sr);
         assertEquals(0x1C, w.getFieldSeparator());
+    }
+
+    @Test
+    public void testPosReadWithEOL() throws IOException {
+        final SSVFileReader sr = new SSVFileReader(new ByteArrayInputStream(T01));
+        final List<String> l = sr.readFields();
+        assertNotNull(l);
+        assertEquals(2, l.size());
+        assertEquals("a" + System.lineSeparator() + "b", l.get(0));
+        assertEquals("c" + System.lineSeparator(), l.get(1));
+        assertNull(sr.readFields());
+    }
+
+    @Test
+    public void testPosReadNoEOL() throws IOException {
+        final SSVFileReader sr = new SSVFileReader(new ByteArrayInputStream(T01, 0, T01.length - 1));
+        final List<String> l = sr.readFields();
+        assertNotNull(l);
+        assertEquals(2, l.size());
+        assertEquals("a" + System.lineSeparator() + "b", l.get(0));
+        assertEquals("c" + System.lineSeparator(), l.get(1));
+        assertNull(sr.readFields());
+    }
+
+    @Test
+    public void testPosReadIDidRightWithNoEOL() throws IOException {
+        final SSVFileReader sr = new SSVFileReader(new ByteArrayInputStream(T01, 0, T01.length - 2));
+        final List<String> l = sr.readFields();
+        assertNotNull(l);
+        assertEquals(2, l.size());
+        assertEquals("a" + System.lineSeparator() + "b", l.get(0));
+        assertEquals("c", l.get(1));
+        assertNull(sr.readFields());
+    }
+
+    @Test
+    public void testPosReadWithNUL() throws IOException {
+        final SSVFileReader sr = new SSVFileReader(new ByteArrayInputStream(T02));
+        final List<String> l = sr.readFields();
+        assertNotNull(l);
+        assertEquals(1, l.size());
+        assertEquals("a", l.get(0));
+        assertNull(sr.readFields());
+    }
+
+    @Test
+    public void testPosReadWithLineAfterNUL() throws IOException {
+        final SSVFileReader sr = new SSVFileReader(new ByteArrayInputStream(T03));
+        List<String> l = sr.readFields();
+        assertNotNull(l);
+        assertEquals(1, l.size());
+        assertEquals("a", l.get(0));
+        l = sr.readFields();
+        assertNotNull(l);
+        assertEquals(2, l.size());
+        assertEquals("c", l.get(0));
+        assertEquals("d", l.get(1));
+        assertNull(sr.readFields());
+    }
+
+    @Test
+    public void testPosLineSeparator() {
+        // no 68k Macintosh
+        assertTrue(LF.equals(System.lineSeparator()) || CRLF.equals(System.lineSeparator()));
     }
 }
