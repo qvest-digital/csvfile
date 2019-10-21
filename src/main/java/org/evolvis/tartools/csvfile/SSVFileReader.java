@@ -139,10 +139,11 @@ public class SSVFileReader extends CSVFileReader {
             }
             for (int i = 0; i < nch; i++) {
                 if (BUF[i] == (char) 0x0A) {
-                    sb.append(BUF, 0, i++);
+                    sb.append(BUF, 0, i);
                     in.reset();
-                    while (i != 0) {
-                        i -= in.skip(i);
+                    nch = i + 1;
+                    while (nch != 0) {
+                        nch -= in.skip(nch);
                     }
                     found = true;
                     break;
@@ -162,6 +163,7 @@ public class SSVFileReader extends CSVFileReader {
      * @return List of String containing each field from the next line of the file
      * @throws IOException if an error occurs while reading the new line from the file
      */
+    @Override
     public List<String> readFields() throws IOException {
         String line = inReadLine();
 
@@ -197,6 +199,7 @@ public class SSVFileReader extends CSVFileReader {
      * @param fields list of fields to add field to
      * @param field  raw extracted String
      */
+    @Override
     protected void addField(final List<String> fields, final String field) {
         fields.add(field.replace(CR, decodeNewline));
     }
