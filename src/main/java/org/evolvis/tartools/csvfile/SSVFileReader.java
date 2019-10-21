@@ -115,6 +115,7 @@ public class SSVFileReader extends CSVFileReader {
      * Something like {@link BufferedReader#readLine()} except stops at LF only.
      *
      * @return String next line or null if EOF
+     * @throws IOException whenever the underlying BufferedReader throws one
      */
     String inReadLine() throws IOException {
         boolean found = false;
