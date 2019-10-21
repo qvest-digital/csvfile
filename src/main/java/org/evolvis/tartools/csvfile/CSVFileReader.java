@@ -289,11 +289,6 @@ public class CSVFileReader extends CSVFile {
             return null;
         }
 
-        if (line.length() == 0) {
-            addField(fields, line);
-            return fields;
-        }
-
         int i = 0;
         do {
             sb.setLength(0);
