@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.evolvis.tartools</groupId>
 		<artifactId>maven-parent</artifactId>
-		<version>1.19</version>
+		<version>1.21</version>
 	</parent>
 	<groupId>org.evolvis.tartools</groupId>
 	<artifactId>csvfile</artifactId>
@@ -46,7 +46,7 @@
 		<sonar.sources>src/main</sonar.sources>
 		<sonar.tests>src/test</sonar.tests>
 		<!-- testing -->
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13</junit.version>
 	</properties>
 	<scm>
 		<connection>scm:git:https://evolvis.org/anonscm/git/tartools/csvfile.git</connection>
