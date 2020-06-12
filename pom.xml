@@ -119,7 +119,7 @@
 						</configuration>
 					</execution>
 					<execution>
-						<id>mksrc-csvfile-build</id>
+						<id>mksrc-run</id>
 						<phase>package</phase>
 						<goals>
 							<goal>exec</goal>
@@ -130,6 +130,26 @@
 								<MKSRC_RUN_FROM_MAVEN>true</MKSRC_RUN_FROM_MAVEN>
 							</environmentVariables>
 							<useMavenLogger>true</useMavenLogger>
+						</configuration>
+					</execution>
+				</executions>
+				<inherited>false</inherited>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>dist-assembly-depsrc</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<attach>false</attach>
+							<descriptors>
+								<descriptor>src/main/ancillary/depsrc.xml</descriptor>
+							</descriptors>
 						</configuration>
 					</execution>
 				</executions>
