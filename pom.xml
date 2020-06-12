@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.evolvis.tartools</groupId>
 		<artifactId>maven-parent</artifactId>
-		<version>1.26-SNAPSHOT</version>
+		<version>1.26</version>
 	</parent>
 	<groupId>org.evolvis.tartools</groupId>
 	<artifactId>csvfile</artifactId>
@@ -27,6 +27,7 @@
 			<url>http://www.informit.com/store/practice-of-programming-9780201615869</url>
 		</license>
 		<license>
+			<!-- short name: MirBSD -->
 			<name>The MirOS Licence</name>
 			<url>http://www.mirbsd.org/MirOS-Licence.htm</url>
 		</license>
