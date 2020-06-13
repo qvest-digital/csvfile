@@ -45,6 +45,7 @@ function errmsg {
 	shift
 	IFS=$'\n'
 	set -- $*
+	IFS=$' \t\n'
 	for x in "$@"; do
 		print -ru9 -- "| $x"
 	done
@@ -84,8 +85,10 @@ IFS= read -pr pVSN || e=1
     'could not get project metadata' \
     "pgID=$pgID" "paID=$paID" "pVSN=$pVSN"
 # create base directory
-mkdir -p target
 rm -rf target/dep-srcs*
+mkdir -p target/dep-srcs-parent
+sed 's!<packaging>[^<>]*</packaging>!<packaging>pom</packaging>!g' \
+    <pom.xml >target/dep-srcs-parent/pom.xml
 
 npoms=0
 function dopom {
@@ -98,7 +101,7 @@ function dopom {
 			<groupId>$pgID</groupId>
 			<artifactId>$paID</artifactId>
 			<version>$pVSN</version>
-			<relativePath>$parentpompath/</relativePath>
+			<relativePath>dep-srcs-parent/</relativePath>
 		</parent>
 		<artifactId>release-sources-$npoms</artifactId>
 		<packaging>jar</packaging>

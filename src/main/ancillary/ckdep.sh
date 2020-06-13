@@ -36,6 +36,7 @@ function errmsg {
 	shift
 	IFS=$'\n'
 	set -- $*
+	IFS=$' \t\n'
 	for x in "$@"; do
 		print -ru9 -- "| $x"
 	done
@@ -95,6 +96,11 @@ IFS= read -pr pVSN || e=1
 [[ $e = 0 && -n $pgID && -n $paID && -n $pVSN ]] || die \
     'could not get project metadata' \
     "pgID=$pgID" "paID=$paID" "pVSN=$pVSN"
+# create base directory
+rm -rf "$parentpompath/target/dep-srcs-parent"
+mkdir -p "$parentpompath/target/dep-srcs-parent"
+sed 's!<packaging>[^<>]*</packaging>!<packaging>pom</packaging>!g' \
+    <"$parentpompath/pom.xml" >"$parentpompath/target/dep-srcs-parent/pom.xml"
 
 # check old file is sorted
 sort -uo ckdep.tmp ckdep.lst
@@ -142,7 +148,7 @@ function dopom {
 			<groupId>$pgID</groupId>
 			<artifactId>$paID</artifactId>
 			<version>$pVSN</version>
-			<relativePath>$parentpompath/</relativePath>
+			<relativePath>$parentpompath/target/dep-srcs-parent/</relativePath>
 		</parent>
 		<artifactId>embedded-code-copy-$1-insert</artifactId>
 		<packaging>jar</packaging>
@@ -249,7 +255,7 @@ function depround {
 		<ckdep.pom.tmp sort -u | doscopes |&
 		while read -pr ga v x; do
 			if [[ $x != @(doc-only|unreleased|"$scope") ]]; then
-				errmsg "unexpected scope $ga $v ${x@Q} for $rest $scope"
+				errmsg "unexpected scope for $ga $v in ${x@Q} for $rest in $scope"
 				(( abend |= 2 ))
 			fi
 			[[ $x = doc-only ]] || print -ru4 -- $ga $v $scope
@@ -275,7 +281,9 @@ while (( ++i < ncc )); do
 done
 # ship source only for some scopes
 <ckdep.mvp.tmp sort -u | doscopes | while read -r ga v scope rest; do
-	[[ $scope != @(compile|runtime) ]] || print -r -- ${ga/:/ } $v
+	[[ "!${ckdep_excludes}!" != *"!$ga!"* ]] || continue
+	[[ "!${ckdep_includes}!" != *"!$ga!"* && \
+	    $scope != @(compile|runtime) ]] || print -r -- ${ga/:/ } $v
 done | sort -u >ckdep.mvn.tmp
 # add static dependencies from embedded files, for SecurityWatch
 [[ ! -s ckdep.inc ]] || cat ckdep.inc >>ckdep.audit.tmp
