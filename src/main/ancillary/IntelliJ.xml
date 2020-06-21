@@ -1,4 +1,5 @@
 <code_scheme name="IntelliJ" version="173">
+  <option name="AUTODETECT_INDENTS" value="false" />
   <option name="OTHER_INDENT_OPTIONS">
     <value>
       <option name="INDENT_SIZE" value="8" />
@@ -8,7 +9,7 @@
   </option>
   <option name="LINE_SEPARATOR" value="&#xA;" />
   <option name="RIGHT_MARGIN" value="130" />
-  <option name="SOFT_MARGINS" value="90,110" />
+  <option name="SOFT_MARGINS" value="80,90,110" />
   <CssCodeStyleSettings>
     <option name="HEX_COLOR_UPPER_CASE" value="true" />
     <option name="HEX_COLOR_LONG_FORMAT" value="true" />
