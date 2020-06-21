@@ -35,6 +35,22 @@
     <option name="ANNOTATION_PARAMETER_WRAP" value="1" />
     <option name="CLASS_COUNT_TO_USE_IMPORT_ON_DEMAND" value="999" />
     <option name="NAMES_COUNT_TO_USE_IMPORT_ON_DEMAND" value="999" />
+    <option name="PACKAGES_TO_USE_IMPORT_ON_DEMAND">
+      <value>
+        <package name="java.awt" withSubpackages="false" static="false" />
+        <package name="javax.swing" withSubpackages="false" static="false" />
+        <package name="java.time.temporal.ChronoField" withSubpackages="false" static="true" />
+        <package name="junit.framework.TestCase" withSubpackages="false" static="true" />
+        <package name="org.hamcrest.CoreMatchers" withSubpackages="false" static="true" />
+        <package name="org.hamcrest.Matchers" withSubpackages="false" static="true" />
+        <package name="org.joda.time.DateTimeConstants" withSubpackages="false" static="true" />
+        <package name="org.junit.Assert" withSubpackages="false" static="true" />
+        <package name="org.junit.jupiter.api.Assertions" withSubpackages="false" static="true" />
+        <package name="org.mockito.ArgumentMatchers" withSubpackages="false" static="true" />
+        <package name="org.mockito.Matchers" withSubpackages="false" static="true" />
+        <package name="org.mockito.Mockito" withSubpackages="false" static="true" />
+      </value>
+    </option>
     <option name="JD_P_AT_EMPTY_LINES" value="false" />
   </JavaCodeStyleSettings>
   <Properties>
