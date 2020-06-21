@@ -1,7 +1,7 @@
 package org.evolvis.tartools.csvfile;
 
 /*-
- * Copyright © 2015, 2017, 2019
+ * Copyright © 2015, 2017, 2019, 2020
  *      mirabilos <mirabilos@evolvis.org>
  *
  * Provided that these terms and disclaimer and all copyright notices
@@ -31,11 +31,14 @@ import java.nio.charset.StandardCharsets;
  *
  * <ul>
  * <li>Line feed (0x0A) is row separator</li>
- * <li>Field separator (0x1C) is column separator</li>
+ * <li>Unit separator (0x1F) is column separator</li>
  * <li>No quote or escape characters are used</li>
  * <li>Carriage return (0x0D) represents embedded newline</li>
- * <li>Cell content is arbitrary binary except 0x0A, 0x1C (and NUL)</li>
+ * <li>Cell content is arbitrary binary except 0x0A, 0x1F (and NUL)</li>
  * </ul>
+ *
+ * <strong>Warning:</strong> Versions prior to CSVFile 3.0 mistakenly used
+ * File separator (0x1C) as field separator. This is now corrected.
  *
  * @author mirabilos (t.glaser@tarent.de)
  * @see <a
@@ -53,7 +56,7 @@ public class SSVFileWriter extends CSVFileWriter {
      */
     public SSVFileWriter(final String outputFileName) throws IOException {
         super(new OutputStreamWriter(new FileOutputStream(outputFileName),
-          StandardCharsets.UTF_8), (char) 0x1C, (char) 0);
+          StandardCharsets.UTF_8), (char) 0x1F, (char) 0);
     }
 
     /**
@@ -63,7 +66,7 @@ public class SSVFileWriter extends CSVFileWriter {
      *               ASCII-compatible charset (such as UTF-8); we sadly cannot test that
      */
     public SSVFileWriter(final Writer writer) {
-        super(writer, (char) 0x1C, (char) 0xFFFF);
+        super(writer, (char) 0x1F, (char) 0xFFFF);
     }
 
     /**
@@ -115,9 +118,9 @@ public class SSVFileWriter extends CSVFileWriter {
             throw new IllegalArgumentException(String.format("%s (\\x%02X) found in field: %s",
               "NUL", 0, fieldString));
         }
-        if (fieldString.indexOf(0x1C) != -1) {
+        if (fieldString.indexOf(0x1F) != -1) {
             throw new IllegalArgumentException(String.format("%s (\\x%02X) found in field: %s",
-              "FS", 0x1C, fieldString));
+              "US", 0x1F, fieldString));
         }
         if (fieldString.indexOf(0x0D) == -1 && fieldString.indexOf(0x0A) == -1) {
             return fieldString;

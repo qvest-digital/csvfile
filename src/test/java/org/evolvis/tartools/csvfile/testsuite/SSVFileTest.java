@@ -1,7 +1,7 @@
 package org.evolvis.tartools.csvfile.testsuite;
 
 /*-
- * Copyright © 2019
+ * Copyright © 2019, 2020
  *      mirabilos <t.glaser@tarent.de>
  *
  * Provided that these terms and disclaimer and all copyright notices
@@ -44,9 +44,9 @@ import static org.junit.Assert.assertTrue;
  * @author mirabilos (t.glaser@tarent.de)
  */
 public class SSVFileTest {
-    private static final byte[] T01 = { 'a', (byte) 0x0D, 'b', (byte) 0x1C, 'c', (byte) 0x0D, (byte) 0x0A };
-    private static final byte[] T02 = { 'a', (byte) 0x00, 'b', (byte) 0x1C, 'c', (byte) 0x0D, (byte) 0x0A };
-    private static final byte[] T03 = { 'a', (byte) 0x00, 'b', (byte) 0x0A, 'c', (byte) 0x1C, 'd', (byte) 0x0A };
+    private static final byte[] T01 = { 'a', (byte) 0x0D, 'b', (byte) 0x1F, 'c', (byte) 0x0D, (byte) 0x0A };
+    private static final byte[] T02 = { 'a', (byte) 0x00, 'b', (byte) 0x1F, 'c', (byte) 0x0D, (byte) 0x0A };
+    private static final byte[] T03 = { 'a', (byte) 0x00, 'b', (byte) 0x0A, 'c', (byte) 0x1F, 'd', (byte) 0x0A };
 
     @Test
     public void testPosEncodedLineSeparators() {
@@ -84,7 +84,7 @@ public class SSVFileTest {
     public void testPosWGetFS() {
         final StringWriter sw = new StringWriter();
         final SSVFileWriter w = new SSVFileWriter(sw);
-        assertEquals(0x1C, w.getFieldSeparator());
+        assertEquals(0x1F, w.getFieldSeparator());
     }
 
     @Test(expected = UnsupportedOperationException.class)
@@ -112,7 +112,7 @@ public class SSVFileTest {
     public void testPosRGetFS() {
         final StringReader sr = new StringReader("");
         final SSVFileReader w = new SSVFileReader(sr);
-        assertEquals(0x1C, w.getFieldSeparator());
+        assertEquals(0x1F, w.getFieldSeparator());
     }
 
     @Test

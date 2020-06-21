@@ -1,7 +1,7 @@
 package org.evolvis.tartools.csvfile;
 
 /*-
- * Copyright © 2019
+ * Copyright © 2019, 2020
  *      mirabilos <t.glaser@tarent.de>
  *
  * Provided that these terms and disclaimer and all copyright notices
@@ -54,7 +54,7 @@ public class SSVFileWriterTest {
     public void testNegPrepFS() {
         final StringWriter sw = new StringWriter();
         final SSVFileWriter w = new SSVFileWriter(sw);
-        final String s = "a" + (char) 0x1C + "b";
+        final String s = "a" + (char) 0x1F + "b";
         System.err.println(String.format("testNegPrepFS: %s", w.prepareField(s)));
     }
 

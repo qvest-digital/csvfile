@@ -1,7 +1,7 @@
 package org.evolvis.tartools.csvfile;
 
 /*-
- * Copyright © 2015, 2017, 2019
+ * Copyright © 2015, 2017, 2019, 2020
  *      mirabilos <mirabilos@evolvis.org>
  *
  * Provided that these terms and disclaimer and all copyright notices
@@ -35,11 +35,14 @@ import java.util.List;
  *
  * <ul>
  * <li>Line feed (0x0A) is row separator</li>
- * <li>Field separator (0x1C) is column separator</li>
+ * <li>Unit separator (0x1F) is column separator</li>
  * <li>No quote or escape characters are used</li>
  * <li>Carriage return (0x0D) represents embedded newline</li>
- * <li>Cell content is arbitrary binary except 0x0A, 0x1C (and NUL)</li>
+ * <li>Cell content is arbitrary binary except 0x0A, 0x1F (and NUL)</li>
  * </ul>
+ *
+ * <strong>Warning:</strong> Versions prior to CSVFile 3.0 mistakenly used
+ * File separator (0x1C) as field separator. This is now corrected.
  *
  * @author mirabilos (t.glaser@tarent.de)
  * @see <a
@@ -79,7 +82,7 @@ public class SSVFileReader extends CSVFileReader {
      *               ASCII-compatible charset (such as UTF-8); we sadly cannot test that
      */
     public SSVFileReader(final Reader reader) {
-        super(reader, (char) 0x1C, (char) 0);
+        super(reader, (char) 0x1F, (char) 0);
     }
 
     /**
