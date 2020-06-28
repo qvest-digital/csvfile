@@ -22,6 +22,7 @@ package org.evolvis.tartools.csvfile;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
@@ -55,8 +56,19 @@ public class SSVFileWriter extends CSVFileWriter {
      * @throws IOException if an error occurs while creating the file
      */
     public SSVFileWriter(final String outputFileName) throws IOException {
-        super(new OutputStreamWriter(new FileOutputStream(outputFileName),
-          StandardCharsets.UTF_8), (char) 0x1F, (char) 0);
+        this(new FileOutputStream(outputFileName));
+    }
+
+    /**
+     * SSVFileWriter constructor just needing an OutputStream for the data to write.
+     *
+     * The SSV file will be written in UTF-8 encoding.
+     *
+     * @param stream The {@link OutputStream} for writing CSV data
+     */
+    public SSVFileWriter(final OutputStream stream) {
+        super(new OutputStreamWriter(stream, StandardCharsets.UTF_8),
+          (char) 0x1F, (char) 0);
     }
 
     /**
