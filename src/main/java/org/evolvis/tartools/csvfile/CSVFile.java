@@ -109,8 +109,8 @@ package org.evolvis.tartools.csvfile;
  */
 public abstract class CSVFile {
     // helper string constants
-    public static final String CR = "" + (char) 0x0D;
-    public static final String LF = "" + (char) 0x0A;
+    public static final String CR = String.valueOf((char) 0x0D);
+    public static final String LF = String.valueOf((char) 0x0A);
     public static final String CRLF = CR + LF;
 
     /**
