@@ -78,7 +78,6 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 
 /**
  * CSVFileWriter is a class derived from {@link CSVFile}
@@ -178,13 +177,15 @@ public class CSVFileWriter extends CSVFile {
      *
      * @param fields The list of strings containing the fields
      */
-    public void writeFields(final List<?> fields) {
-        int n = fields.size();
-        for (int i = 0; i < n; i++) {
-            out.print(prepareField(fields.get(i)));
-            if (i < (n - 1)) {
+    public void writeFields(final Iterable<?> fields) {
+        boolean first = true;
+        for (final Object field : fields) {
+            if (first) {
+                first = false;
+            } else {
                 out.print(fieldSeparator);
             }
+            out.print(prepareField(field));
         }
         emitRowSeparator();
     }
