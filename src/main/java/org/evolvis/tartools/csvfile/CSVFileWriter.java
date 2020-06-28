@@ -192,13 +192,6 @@ public class CSVFileWriter extends CSVFile {
             }
             out.print(prepareField(field));
         }
-        emitRowSeparator();
-    }
-
-    /**
-     * Called after a list of fields has been output.
-     */
-    protected void emitRowSeparator() {
         out.print(rowSeparator);
     }
 
