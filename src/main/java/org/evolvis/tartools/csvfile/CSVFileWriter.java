@@ -95,6 +95,11 @@ public class CSVFileWriter extends CSVFile {
     protected final PrintWriter out;
 
     /**
+     * Separator between rows (default: LF)
+     */
+    protected String rowSeparator = "\n";
+
+    /**
      * CSVFileWriter constructor just needing the name of the CSV file that will be written.
      *
      * @param outputFileName The name of the CSV file to be opened for writing
@@ -194,7 +199,7 @@ public class CSVFileWriter extends CSVFile {
      * Called after a list of fields has been output.
      */
     protected void emitRowSeparator() {
-        out.println();
+        out.print(rowSeparator);
     }
 
     /**
