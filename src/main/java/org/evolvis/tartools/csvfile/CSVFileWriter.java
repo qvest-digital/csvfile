@@ -97,7 +97,7 @@ public class CSVFileWriter extends CSVFile {
     /**
      * Separator between rows (default: LF)
      */
-    protected String rowSeparator = "\n";
+    protected String rowSeparator = LF;
 
     /**
      * CSVFileWriter constructor just needing the name of the CSV file that will be written.
@@ -183,7 +183,7 @@ public class CSVFileWriter extends CSVFile {
     /**
      * Gets the current row separator
      *
-     * @return row separator (CR, LF, CRLF) as String
+     * @return row separator (CR, LF or CRLF) as String
      */
     public String getRowSeparator() {
         return rowSeparator;
@@ -194,6 +194,7 @@ public class CSVFileWriter extends CSVFile {
      *
      * However, setting it to anything other than CR, LF, or a combination of
      * these will be ignored by the field escape code, and is therefore undefined.
+     * Setting it to {@link System#lineSeparator()} might be sensible.
      *
      * @param separator to use (default: "\n")
      */

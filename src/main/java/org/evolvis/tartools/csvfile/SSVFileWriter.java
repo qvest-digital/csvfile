@@ -66,7 +66,7 @@ public class SSVFileWriter extends CSVFileWriter {
      */
     public SSVFileWriter(final OutputStream stream) {
         super(stream, (char) 0x1F, (char) 0);
-        rowSeparator = String.valueOf((char) 0x0A);
+        rowSeparator = LF;
     }
 
     /**
@@ -77,7 +77,7 @@ public class SSVFileWriter extends CSVFileWriter {
      */
     public SSVFileWriter(final Writer writer) {
         super(writer, (char) 0x1F, (char) 0xFFFF);
-        rowSeparator = String.valueOf((char) 0x0A);
+        rowSeparator = LF;
     }
 
     /**
