@@ -116,12 +116,12 @@ public abstract class CSVFile {
     /**
      * The default char used as field separator.
      */
-    protected static final char DEFAULT_FIELD_SEPARATOR = ',';
+    public static final char DEFAULT_FIELD_SEPARATOR = ',';
 
     /**
      * The default char used as text qualifier.
      */
-    protected static final char DEFAULT_TEXT_QUALIFIER = '"';
+    public static final char DEFAULT_TEXT_QUALIFIER = '"';
 
     /**
      * The current char used as field separator.
