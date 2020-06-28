@@ -66,6 +66,7 @@ public class SSVFileWriter extends CSVFileWriter {
      */
     public SSVFileWriter(final OutputStream stream) {
         super(stream, (char) 0x1F, (char) 0);
+        rowSeparator = String.valueOf((char) 0x0A);
     }
 
     /**
@@ -76,6 +77,7 @@ public class SSVFileWriter extends CSVFileWriter {
      */
     public SSVFileWriter(final Writer writer) {
         super(writer, (char) 0x1F, (char) 0xFFFF);
+        rowSeparator = String.valueOf((char) 0x0A);
     }
 
     /**
@@ -104,14 +106,6 @@ public class SSVFileWriter extends CSVFileWriter {
     @Override
     public char getTextQualifier() {
         throw new UnsupportedOperationException("SSV does not have a quote character");
-    }
-
-    /**
-     * Called after a list of fields has been output.
-     */
-    @Override
-    protected void emitRowSeparator() {
-        out.print((char) 0x0A);
     }
 
     /**
