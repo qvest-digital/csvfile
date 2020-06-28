@@ -201,6 +201,7 @@ public class SSVFileReader extends CSVFileReader {
      *
      * @param fields list of fields to add field to
      * @param field  raw extracted String
+     * @see #useUnixNewline()
      */
     @Override
     protected void addField(final List<String> fields, final String field) {
