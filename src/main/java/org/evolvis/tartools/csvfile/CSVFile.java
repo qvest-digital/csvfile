@@ -108,10 +108,10 @@ package org.evolvis.tartools.csvfile;
  * @author Fabrizio Fazzino
  */
 public abstract class CSVFile {
-    // helper string constants
-    public static final String CR = String.valueOf((char) 0x0D);
-    public static final String LF = String.valueOf((char) 0x0A);
-    public static final String CRLF = CR + LF;
+    // helper string constants, tested for precise byte values
+    public static final String CR = "\r";
+    public static final String LF = "\n";
+    public static final String CRLF = "\r\n";
 
     /**
      * The default char used as field separator.
