@@ -23,9 +23,7 @@ package org.evolvis.tartools.csvfile;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.io.Writer;
-import java.nio.charset.StandardCharsets;
 
 /**
  * {@link CSVFileWriter} subclass to write the SSV format:
@@ -67,8 +65,7 @@ public class SSVFileWriter extends CSVFileWriter {
      * @param stream The {@link OutputStream} for writing CSV data
      */
     public SSVFileWriter(final OutputStream stream) {
-        super(new OutputStreamWriter(stream, StandardCharsets.UTF_8),
-          (char) 0x1F, (char) 0);
+        super(stream, (char) 0x1F, (char) 0);
     }
 
     /**

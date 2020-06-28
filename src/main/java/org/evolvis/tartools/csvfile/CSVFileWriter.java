@@ -73,8 +73,11 @@ package org.evolvis.tartools.csvfile;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 /**
@@ -100,7 +103,16 @@ public class CSVFileWriter extends CSVFile {
      */
     public CSVFileWriter(final String outputFileName)
       throws IOException {
-        this(outputFileName, DEFAULT_FIELD_SEPARATOR);
+        this(new FileWriter(outputFileName));
+    }
+
+    /**
+     * CSVFileWriter constructor with default values.
+     *
+     * @param writer The {@link Writer} to be opened for writing
+     */
+    public CSVFileWriter(final Writer writer) {
+        this(writer, DEFAULT_FIELD_SEPARATOR, DEFAULT_TEXT_QUALIFIER);
     }
 
     /**
@@ -126,6 +138,19 @@ public class CSVFileWriter extends CSVFile {
     public CSVFileWriter(final String outputFileName, final char sep, final char qual)
       throws IOException {
         this(new FileWriter(outputFileName), sep, qual);
+    }
+
+    /**
+     * CSVFileWriter constructor with given field separator and text qualifier.
+     *
+     * The CSV file will be written in UTF-8 encoding.
+     *
+     * @param stream The {@link OutputStream} to be opened for writing
+     * @param sep    The field separator to be used; overwrites the default one
+     * @param qual   The text qualifier to be used; overwrites the default one
+     */
+    public CSVFileWriter(final OutputStream stream, final char sep, final char qual) {
+        this(new OutputStreamWriter(stream, StandardCharsets.UTF_8), sep, qual);
     }
 
     /**
