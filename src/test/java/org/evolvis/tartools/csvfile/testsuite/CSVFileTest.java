@@ -30,6 +30,7 @@ import org.junit.Test;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -42,11 +43,13 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.evolvis.tartools.csvfile.CSVFile.CR;
 import static org.evolvis.tartools.csvfile.CSVFile.CRLF;
 import static org.evolvis.tartools.csvfile.CSVFile.LF;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -344,6 +347,30 @@ public class CSVFileTest {
         f = fr.readFields();        // EOF
         assertNull(f);
         fr.close();
+
+        final ByteArrayOutputStream bw = new ByteArrayOutputStream();
+        final ByteArrayOutputStream bd = new ByteArrayOutputStream();
+        fw = new CSVFileWriter(bw);
+        assertEquals("\n", fw.getRowSeparator());
+        final CSVFileWriter fd = new CSVFileWriter(bd);
+        fd.setRowSeparator("\r\n");
+        assertEquals("\r\n", fd.getRowSeparator());
+        List<String> l = Arrays.asList("1", "foo");
+        fw.writeFields(l);
+        fd.writeFields(l);
+        l = Arrays.asList("2", "bar\r");
+        fw.writeFields(l);
+        fd.writeFields(l);
+        fw.close();
+        fd.close();
+        assertArrayEquals(new byte[] {
+          '1', ',', 'f', 'o', 'o', 0x0A,
+          '2', ',', '"', 'b', 'a', 'r', 0x0D, '"', 0x0A
+        }, bw.toByteArray());
+        assertArrayEquals(new byte[] {
+          '1', ',', 'f', 'o', 'o', 0x0D, 0x0A,
+          '2', ',', '"', 'b', 'a', 'r', 0x0D, '"', 0x0D, 0x0A
+        }, bd.toByteArray());
     }
 
     @Test

@@ -89,4 +89,11 @@ public class SSVFileWriterTest {
         final SSVFileWriter w = new SSVFileWriter(sw);
         assertEquals("", w.prepareField(null));
     }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void testNegWSetRS() {
+        final StringWriter sw = new StringWriter();
+        final SSVFileWriter w = new SSVFileWriter(sw);
+        w.setRowSeparator(";");
+    }
 }

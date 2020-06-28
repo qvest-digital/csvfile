@@ -120,6 +120,17 @@ public class CSVFileWriter extends CSVFile {
     }
 
     /**
+     * CSVFileWriter constructor with default values.
+     *
+     * The CSV file will be written in UTF-8 encoding.
+     *
+     * @param stream The {@link OutputStream} to be opened for writing
+     */
+    public CSVFileWriter(final OutputStream stream) {
+        this(stream, DEFAULT_FIELD_SEPARATOR, DEFAULT_TEXT_QUALIFIER);
+    }
+
+    /**
      * CSVFileWriter constructor with a given field separator.
      *
      * @param outputFileName The name of the CSV file to be opened for writing
@@ -167,6 +178,27 @@ public class CSVFileWriter extends CSVFile {
     public CSVFileWriter(final Writer writer, final char sep, final char qual) {
         super(sep, qual);
         out = new PrintWriter(new BufferedWriter(writer));
+    }
+
+    /**
+     * Gets the current row separator
+     *
+     * @return row separator (CR, LF, CRLF) as String
+     */
+    public String getRowSeparator() {
+        return rowSeparator;
+    }
+
+    /**
+     * Sets the row separator to an arbitrary string.
+     *
+     * However, setting it to anything other than CR, LF, or a combination of
+     * these will be ignored by the field escape code, and is therefore undefined.
+     *
+     * @param separator to use (default: "\n")
+     */
+    public void setRowSeparator(final String separator) {
+        rowSeparator = separator;
     }
 
     /**

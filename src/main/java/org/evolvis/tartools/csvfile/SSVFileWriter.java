@@ -81,6 +81,16 @@ public class SSVFileWriter extends CSVFileWriter {
     }
 
     /**
+     * Throws an exception, the row separator is constant for SSV.
+     *
+     * @param sep The new row separator to be ignored
+     */
+    @Override
+    public void setRowSeparator(final String sep) {
+        throw new UnsupportedOperationException("SSV does not allow changing the row separator");
+    }
+
+    /**
      * Throws an exception, the field separator is constant for SSV.
      *
      * @param sep The new field separator to be ignored
