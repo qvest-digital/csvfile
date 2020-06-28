@@ -61,6 +61,7 @@ public class CSVFileTest {
     private static final byte[] CONT_03 = { 'm', (byte) 0xE4, 'h' };
     private static final byte[] CONT_05 = { '|', 'a', ';', 'b', '|', ';', (byte) 0xFC };
     private static final byte[] CONT_06 = { '|', 'a', ';', 'b', '|', ';', (byte) 0xFC, ';' };
+    private static final String CONT_CR = "1,foo\r\n2,bar\r\n";
 
     private static String FILE(final int nr) {
         return String.format("src/test/resources/%02d.in", nr);
@@ -324,6 +325,25 @@ public class CSVFileTest {
         fw = new CSVFileWriter(OUTF(91));
         nr.useUnixNewline();
         cpy(nr, fw, OUTF(91), CMPF(91));
+
+        // CRLF
+        sr = new StringReader(CONT_CR);
+        assertNotNull(sr);
+        fr = new CSVFileReader(sr);
+        assertNotNull(fr);
+        f = fr.readFields();        // #1
+        assertNotNull(f);
+        assertEquals(2, f.size());
+        assertEquals("1", f.get(0));
+        assertEquals("foo", f.get(1));
+        f = fr.readFields();        // #2
+        assertNotNull(f);
+        assertEquals(2, f.size());
+        assertEquals("2", f.get(0));
+        assertEquals("bar", f.get(1));
+        f = fr.readFields();        // EOF
+        assertNull(f);
+        fr.close();
     }
 
     @Test
