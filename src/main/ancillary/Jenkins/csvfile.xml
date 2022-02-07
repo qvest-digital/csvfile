@@ -71,7 +71,7 @@ Only relevant when performing a release.</description>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <jdk>(Inherit From Job)</jdk>
+  <jdk>(Default)</jdk>
   <triggers>
     <hudson.triggers.SCMTrigger>
       <spec># alle Stunde
@@ -88,7 +88,7 @@ H * * * *
   <goals>-Pdstrepo-$DSTREPO_PROFILE -e clean install</goals>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>
-  <ignoreUpstremChanges>false</ignoreUpstremChanges>
+  <ignoreUpstremChanges>true</ignoreUpstremChanges>
   <archivingDisabled>true</archivingDisabled>
   <siteArchivingDisabled>false</siteArchivingDisabled>
   <fingerprintingDisabled>false</fingerprintingDisabled>
@@ -110,7 +110,7 @@ H * * * *
   </reporters>
   <publishers>
     <hudson.plugins.sonar.SonarPublisher plugin="sonar@2.1">
-      <jdk>(Inherit From Job)</jdk>
+      <jdk>OpenJDK 8 (System)</jdk>
       <branch></branch>
       <language></language>
       <mavenOpts></mavenOpts>
