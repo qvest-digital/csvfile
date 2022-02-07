@@ -49,7 +49,7 @@
 		<!-- testing -->
 		<junit.version>4.13.2</junit.version>
 		<!-- maven plugins -->
-		<maven.owasp.dependency-check.version>6.5.0</maven.owasp.dependency-check.version>
+		<maven.owasp.dependency-check.version>6.5.3</maven.owasp.dependency-check.version>
 	</properties>
 	<scm>
 		<connection>scm:git:https://evolvis.org/anonscm/git/tartools/csvfile.git</connection>
