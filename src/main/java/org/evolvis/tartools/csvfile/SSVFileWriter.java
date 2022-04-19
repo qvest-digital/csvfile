@@ -43,6 +43,9 @@ import java.io.Writer;
  * @see <a
  * href="https://evolvis.org/plugins/scmgit/cgi-bin/gitweb.cgi?p=shellsnippets/shellsnippets.git;a=tree;f=mksh/ssv;hb=HEAD">SSV
  * at shellsnippets @ Evolvis</a>
+ * @see <a
+ * href="https://evolvis.org/plugins/scmgit/cgi-bin/gitweb.cgi?p=useful-scripts/useful-scripts.git;a=blob;f=misc/ssv_csv.py;hb=HEAD">ssv_csv.py
+ * at useful-scripts @ Evolvis</a>
  */
 public class SSVFileWriter extends CSVFileWriter {
     /**
