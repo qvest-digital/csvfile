@@ -8,7 +8,7 @@
 	</parent>
 	<groupId>org.evolvis.tartools</groupId>
 	<artifactId>csvfile</artifactId>
-	<version>3.2</version>
+	<version>3.3-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>CSV file reader/writer</description>
@@ -55,7 +55,7 @@
 		<connection>scm:git:https://evolvis.org/anonscm/git/tartools/csvfile.git</connection>
 		<developerConnection>scm:git:ssh://maven@evolvis.org/scmrepos/git/tartools/csvfile.git</developerConnection>
 		<url>https://evolvis.org/plugins/scmgit/cgi-bin/gitweb.cgi?p=tartools/csvfile.git</url>
-		<tag>csvfile-3.2</tag>
+		<tag>HEAD</tag>
 	</scm>
 	<dependencies>
 		<dependency>
