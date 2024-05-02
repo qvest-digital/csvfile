@@ -39,7 +39,7 @@ import java.io.Writer;
  * <strong>Warning:</strong> Versions prior to CSVFile 3.0 mistakenly used
  * File separator (0x1C) as field separator. This is now corrected.
  *
- * @author mirabilos (t.glaser@tarent.de)
+ * @author mirabilos (t.glaser@qvest-digital.com)
  * @see <a
  * href="https://evolvis.org/plugins/scmgit/cgi-bin/gitweb.cgi?p=shellsnippets/shellsnippets.git;a=tree;f=mksh/ssv;hb=HEAD">SSV
  * at shellsnippets @ Evolvis</a>

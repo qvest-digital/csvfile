@@ -2,7 +2,7 @@ package org.evolvis.tartools.csvfile.testsuite;
 
 /*-
  * Copyright © 2019
- *      mirabilos <t.glaser@tarent.de>
+ *      mirabilos <t.glaser@qvest-digital.com>
  *
  * Provided that these terms and disclaimer and all copyright notices
  * are retained or reproduced in an accompanying document, permission
@@ -57,7 +57,7 @@ import static org.junit.Assert.assertNull;
 /**
  * Test suite (integration) for the CSVFile suite
  *
- * @author mirabilos (t.glaser@tarent.de)
+ * @author mirabilos (t.glaser@qvest-digital.com)
  */
 public class CSVFileTest {
     private static final String CONT_02 = "\"\",,a,\"b\"";

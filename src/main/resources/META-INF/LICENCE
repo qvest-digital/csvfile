@@ -7,20 +7,20 @@ are available as well under more liberal terms as documented below.
 
 COPYING in this directory has the full LGPL licence terms and text.
 
-Licensor is tarent solutions GmbH, http://www.tarent.de/
+Licensor: Qvest Digital AG, Bonn, Germany
 
 Copyright holders and contributors:
 
 *** CSVFile, CSVFileReader, CSVFileWriter, CSVFile10Writer ***
 
-Copyright © 2018, 2019 mirabilos <t.glaser@tarent.de>
+Copyright © 2018, 2019 mirabilos <t.glaser@qvest-digital.com>
 
 Formerly developed as part of VerA.web:
 Copyright © 2016 Атанас Александров <a.alexandrov@tarent.de>
 Copyright © 2006 Christoph Jerolimov <jerolimov@gmx.de>
 Copyright © 2008 Carsten Klein <c.klein@tarent.de>
 Copyright © 2005 Michael Klink <m.klink@tarent.de>
-Copyright © 2013, 2015, 2018 mirabilos <t.glaser@tarent.de>
+Copyright © 2013, 2015, 2018 mirabilos <t.glaser@qvest-digital.com>
 and older code, Copyright © 2004–2008 ⮡ tarent GmbH and contributors.
 
 Copyright © 2005 Fabrizio Fazzino (under GNU LGPL) — also on
@@ -73,7 +73,7 @@ copyright notice and book citation attached.”</cite> I have done so.
 *** SSVFileReader, SSVFileWriter, the build scripts and test cases ***
 
 Copyright © 2016, 2017, 2018, 2019
-	mirabilos <t.glaser@tarent.de>
+	mirabilos <t.glaser@qvest-digital.com>
 Copyright © 2015, 2017, 2019, 2020
 	mirabilos <mirabilos@evolvis.org>
 

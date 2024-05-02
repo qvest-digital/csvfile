@@ -2,7 +2,7 @@ package org.evolvis.tartools.csvfile;
 
 /*-
  * Copyright © 2019, 2020
- *      mirabilos <t.glaser@tarent.de>
+ *      mirabilos <t.glaser@qvest-digital.com>
  *
  * Provided that these terms and disclaimer and all copyright notices
  * are retained or reproduced in an accompanying document, permission
@@ -31,7 +31,7 @@ import static org.junit.Assert.assertEquals;
  * Tests for {@link SSVFileWriter} that need protected access and can’t be in
  * {@link org.evolvis.tartools.csvfile.testsuite.SSVFileTest}
  *
- * @author mirabilos (t.glaser@tarent.de)
+ * @author mirabilos (t.glaser@qvest-digital.com)
  */
 public class SSVFileWriterTest {
     @Test

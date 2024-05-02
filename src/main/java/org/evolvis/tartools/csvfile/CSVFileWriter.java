@@ -7,19 +7,19 @@ package org.evolvis.tartools.csvfile;
  * the GNU LGPL (Lesser or Library General Public License), any version,
  * as published by the Free Software Foundation. Some individual classes
  * are available as well under more liberal terms, this isn’t.
- * Licensor is tarent solutions GmbH, http://www.tarent.de/
+ * Licensor: Qvest Digital AG, Bonn, Germany
  *
  * Copyright holders and contributors:
  *
- * Copyright © 2018, 2019 mirabilos <t.glaser@tarent.de>
- * Licensor is tarent solutions GmbH, http://www.tarent.de/
+ * Copyright © 2018, 2019 mirabilos <t.glaser@qvest-digital.com>
+ * Licensor: Qvest Digital AG, Bonn, Germany
  *
  * Formerly developed as part of VerA.web:
  * Copyright © 2016 Атанас Александров <a.alexandrov@tarent.de>
  * Copyright © 2006 Christoph Jerolimov <jerolimov@gmx.de>
  * Copyright © 2008 Carsten Klein <c.klein@tarent.de>
  * Copyright © 2005 Michael Klink <m.klink@tarent.de>
- * Copyright © 2013, 2015, 2018 mirabilos <t.glaser@tarent.de>
+ * Copyright © 2013, 2015, 2018 mirabilos <t.glaser@qvest-digital.com>
  * and older code, Copyright © 2004–2008 ⮡ tarent GmbH and contributors.
  *
  * Copyright © 2005 Fabrizio Fazzino (under GNU LGPL) — also on

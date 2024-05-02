@@ -2,7 +2,7 @@ package org.evolvis.tartools.csvfile.testsuite;
 
 /*-
  * Copyright © 2019, 2020
- *      mirabilos <t.glaser@tarent.de>
+ *      mirabilos <t.glaser@qvest-digital.com>
  *
  * Provided that these terms and disclaimer and all copyright notices
  * are retained or reproduced in an accompanying document, permission
@@ -41,7 +41,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Tests for {@link SSVFileWriter} that aren’t already in {@link CSVFileTest}
  *
- * @author mirabilos (t.glaser@tarent.de)
+ * @author mirabilos (t.glaser@qvest-digital.com)
  */
 public class SSVFileTest {
     private static final byte[] T01 = { 'a', (byte) 0x0D, 'b', (byte) 0x1F, 'c', (byte) 0x0D, (byte) 0x0A };
