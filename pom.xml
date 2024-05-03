@@ -46,10 +46,12 @@
 		<archiver.copyright>Published under multiple copyrights and aggregate licences (see META-INF/LICENCE; net licence: GNU LGPLv2.0+); Licensor: © ${archiver.copyright.lastyear} Qvest Digital AG, Bonn, Germany</archiver.copyright>
 		<sonar.sources>src/main</sonar.sources>
 		<sonar.tests>src/test</sonar.tests>
-		<!-- testing -->
+		<!-- ‣ testing -->
 		<junit.version>4.13.2</junit.version>
-		<!-- maven plugins -->
+		<!-- ‣ maven plugins -->
 		<maven.owasp.dependency-check.version>9.1.0</maven.owasp.dependency-check.version>
+		<!-- ‣ release management -->
+		<project.build.outputTimestamp>1970-01-01T00:00:00Z</project.build.outputTimestamp>
 	</properties>
 	<scm>
 		<connection>scm:git:https://evolvis.org/anonscm/git/tartools/csvfile.git</connection>
