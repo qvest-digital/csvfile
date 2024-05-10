@@ -96,6 +96,7 @@
 				<groupId>org.owasp</groupId>
 				<artifactId>dependency-check-maven</artifactId>
 				<version>${maven.owasp.dependency-check.version}</version>
+				<inherited>false</inherited>
 				<executions>
 					<execution>
 						<id>owasp-check</id>
@@ -117,11 +118,11 @@
 						</configuration>
 					</execution>
 				</executions>
-				<inherited>false</inherited>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
+				<inherited>false</inherited>
 				<executions>
 					<execution>
 						<id>build-depsrcs</id>
@@ -166,11 +167,11 @@
 						</configuration>
 					</execution>
 				</executions>
-				<inherited>false</inherited>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
+				<inherited>false</inherited>
 				<executions>
 					<execution>
 						<id>dist-assembly-depsrc</id>
@@ -186,7 +187,6 @@
 						</configuration>
 					</execution>
 				</executions>
-				<inherited>false</inherited>
 			</plugin>
 		</plugins>
 	</build>
