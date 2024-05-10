@@ -8,7 +8,7 @@
 	</parent>
 	<groupId>org.evolvis.tartools</groupId>
 	<artifactId>csvfile</artifactId>
-	<version>3.3</version>
+	<version>3.4-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>CSV file reader/writer</description>
@@ -51,13 +51,13 @@
 		<!-- ‣ maven plugins -->
 		<maven.owasp.dependency-check.version>9.1.0</maven.owasp.dependency-check.version>
 		<!-- ‣ release management -->
-		<project.build.outputTimestamp>2024-05-10T17:19:00Z</project.build.outputTimestamp>
+		<project.build.outputTimestamp>2024-05-10T17:20:39Z</project.build.outputTimestamp>
 	</properties>
 	<scm>
 		<connection>scm:git:https://evolvis.org/anonscm/git/tartools/csvfile.git</connection>
 		<developerConnection>scm:git:ssh://maven@evolvis.org/scmrepos/git/tartools/csvfile.git</developerConnection>
 		<url>https://evolvis.org/plugins/scmgit/cgi-bin/gitweb.cgi?p=tartools/csvfile.git</url>
-		<tag>csvfile-3.3</tag>
+		<tag>HEAD</tag>
 	</scm>
 	<dependencies>
 		<dependency>
